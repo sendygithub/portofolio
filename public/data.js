@@ -1,9 +1,9 @@
 import Hero from "@/public/assets/aku.jpg";
 import Proyek1 from "@/public/assets/proyek1.webp";
 import Proyek2 from "@/public/assets/proyek2.webp";
-import Proyek3 from "@/public/assets/proyek3.webp";
-import Proyek4 from "@/public/assets/proyek4.webp";
-import Proyek5 from "@/public/assets/proyek5.webp";
+import Proyek3 from "@/public/assets/1.png";
+import Proyek4 from "@/public/assets/2.png";
+import Proyek5 from "@/public/assets/3.png";
 
 const Image = {
   Hero,

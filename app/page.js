@@ -183,7 +183,7 @@ export default function Home() {
               />
               <div className="p-8">
                 <h3 className="text-2xl font-semibold mb-4">
-                  {idx === 0 ? "LARAVEL HRIS " : `Proyek ${idx === 3 ? "Keempat" : idx === 4 ? "Kelima" : idx + 1 === 2 ? "Kedua" : idx + 1 === 3 ? "Ketiga" : "Keenam"}`}
+                  {idx === 0 ? "LARAVEL HRIS " : `Proyek ${idx === 3 ? "NextJS HRIS" : idx === 4 ? "Aplikasi Booking Hotel" : idx + 1 === 2 ? "Kedua" : idx + 1 === 3 ? "Company Profile Taman Baca" : "Keenam"}`}
                 </h3>
                 <p className="text-gray-400 mb-8">
                   Deserunt cillum ex ea cillum ipsum duis. Aliquip elit officia dolor eiusmod incididunt tempor irure.
