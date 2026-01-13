@@ -127,7 +127,7 @@ export default function Home() {
       {/* Core Skills Section */}
       <section id="layanan" className="py-32">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Technical Expertise</h2>
             <div className="h-1.5 w-24 bg-yellow-500 mx-auto rounded-full" />
           </div>
@@ -273,7 +273,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-xs uppercase font-bold opacity-50">Email</p>
-                      <p className="font-bold">sendy.andreansah@example.com</p>
+                      <p className="font-bold">sendy.lazada@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">

@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link href="#beranda" className="text-2xl font-bold gradient-text">
-            Sendy.
+            Portofolio.
           </Link>
 
           {/* Desktop Menu */}
