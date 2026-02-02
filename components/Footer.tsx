@@ -25,7 +25,7 @@ const services = [
   "Consulting",
 ];
 
-export default function Footer() {
+export function Footer() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -197,3 +197,4 @@ export default function Footer() {
     </footer>
   );
 }
+export default Footer;

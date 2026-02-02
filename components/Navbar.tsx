@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function Navbar() {
+export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold bg-gradient-to-r from-primary-gold to-primary-blue bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-primary-gold to-primary-blue bg-clip-text text-transparent cursor-pointer"
           >
             Portfolio
           </motion.div>
@@ -71,3 +71,7 @@ export default function Navbar() {
     </motion.nav>
   );
 }
+
+export default Navbar;
+
+
