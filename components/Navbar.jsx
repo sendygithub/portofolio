@@ -1,102 +1,73 @@
 "use client";
-import Link from "next/link";
-import "remixicon/fonts/remixicon.css";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Profile", href: "#beranda" },
-    { name: "Skills", href: "#layanan" },
-    { name: "Projects", href: "#proyek" },
-    { name: "Contact", href: "#kontak" },
+  const navItems = [
+    { name: "Profile", href: "#home" },
+    { name: "Projects", href: "#projects" },
+    { name: "Skills", href: "#skills" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "py-4 bg-black/60 backdrop-blur-lg border-b border-white/10" : "py-6 bg-transparent"
-        }`}
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/80 backdrop-blur-md border-b border-white/10"
+          : "bg-transparent"
+      }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="#beranda" className="text-2xl font-bold gradient-text">
-            Portofolio.
-          </Link>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="text-2xl font-bold bg-gradient-to-r from-primary-gold to-primary-blue bg-clip-text text-transparent"
+          >
+            Portfolio
+          </motion.div>
 
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="text-gray-300 hover:text-yellow-400 transition-colors font-medium text-sm uppercase tracking-wider"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href="#kontak"
-                className="px-6 py-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full transition-all text-sm"
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.name}
+                href={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.1, color: "#d4af37" }}
+                className="text-white/80 hover:text-primary-gold transition-colors duration-200"
               >
-                Hire Me
-              </Link>
-            </li>
-          </ul>
+                {item.name}
+              </motion.a>
+            ))}
+          </div>
 
-          {/* Mobile Toggle */}
-          <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
-            <i className={isOpen ? "ri-close-line ri-2x" : "ri-menu-3-line ri-2x"}></i>
-          </button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-6 py-2 bg-gradient-to-r from-primary-gold to-primary-blue text-background font-semibold rounded-full hover:shadow-lg hover:shadow-primary-blue/50 transition-all duration-300"
+          >
+            Get in Touch
+          </motion.button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 border-b border-white/10 overflow-hidden"
-          >
-            <ul className="flex flex-col items-center py-8 gap-6">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-xl text-gray-300 hover:text-yellow-400"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-              <Link
-                href="#kontak"
-                onClick={() => setIsOpen(false)}
-                className="px-8 py-3 bg-yellow-500 text-black font-bold rounded-full"
-              >
-                Hire Me
-              </Link>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
-};
-
-export default Navbar;
+}
