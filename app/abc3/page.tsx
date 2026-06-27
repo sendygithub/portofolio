@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface ApbData {
   id: number;
@@ -18,6 +18,7 @@ export default function Abc3Page() {
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [sortAsc, setSortAsc] = useState(false);
+  const [printMode, setPrintMode] = useState(false);
   const tableRef = useRef<HTMLTableElement>(null);
 
   const handleSearch = async () => {
@@ -73,93 +74,57 @@ export default function Abc3Page() {
   };
 
   const handlePrint = () => {
-    const printWindow = window.open("", "_blank");
-    if (!printWindow) {
-      alert("Popup diblokir. Izinkan popup untuk mencetak.");
+    if (tableData.length === 0) {
+      alert("Tidak ada data untuk dicetak.");
       return;
     }
-
-    // Build ASCII table
-    const colWidths = [5, 9, 7, 9, 11];
-    const headers = ["APB", "NO SPEK", "SUDUT", "LEBAR", "TOLERANSI"];
-
-    const pad = (str: string, width: number) => {
-      return str.padEnd(width).substring(0, width);
-    };
-
-    const printLine = (cols: string[]) => {
-      return "│ " + cols.map((c, i) => pad(c, colWidths[i])).join(" │ ") + " │";
-    };
-
-    const separator =
-      "├" + colWidths.map((w) => "─".repeat(w + 2)).join("┼") + "┤";
-
-    const topBorder =
-      "┌" + colWidths.map((w) => "─".repeat(w + 2)).join("┬") + "┐";
-
-    const bottomBorder =
-      "└" + colWidths.map((w) => "─".repeat(w + 2)).join("┴") + "┘";
-
-    let rows = "";
-    tableData.forEach((item) => {
-      rows +=
-        printLine([
-          item.apb,
-          item.noSpek,
-          item.sudut,
-          item.lebar,
-          item.toleransi,
-        ]) + "\n";
-    });
-
-    const tableContent = [
-      topBorder,
-      printLine(headers),
-      separator,
-      rows,
-      bottomBorder,
-    ].join("\n");
-
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Print Data APB</title>
-          <style>
-            @page { margin: 5mm; }
-            body {
-              font-family: 'Courier New', monospace;
-              font-size: 8px;
-              width: 58mm;
-              margin: 0 auto;
-              padding: 3mm;
-              white-space: pre;
-            }
-            h2 {
-              text-align: center;
-              font-size: 10px;
-              margin: 0 0 5px 0;
-              font-weight: bold;
-              font-family: 'Courier New', monospace;
-            }
-            pre {
-              font-family: 'Courier New', monospace;
-              font-size: 7px;
-              margin: 0;
-              line-height: 1.3;
-            }
-          </style>
-        </head>
-        <body>
-          <h2>Data APB</h2>
-          <pre>${tableContent}</pre>
-          <script>
-            window.onload = function() { window.print(); window.close(); }
-          <\/script>
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
+    setPrintMode(true);
+    setTimeout(() => {
+      window.print();
+    }, 100);
   };
+
+  useEffect(() => {
+    if (printMode) {
+      const style = document.createElement("style");
+      style.id = "abc3-print-styles";
+      style.textContent = `
+        @media print {
+          body * { visibility: hidden; }
+          #print-section, #print-section * { visibility: visible; }
+          #print-section { position: absolute; left: 0; top: 0; width: 100%; padding: 10mm; }
+          @page { margin: 5mm; size: landscape; }
+          .no-print { display: none !important; }
+          table { font-size: 10pt; border-collapse: collapse; width: 100%; }
+          th, td { border: 1px solid black; padding: 4px 8px; text-align: left; }
+          th { background-color: #e5e7eb !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          h2 { text-align: center; font-size: 14pt; margin-bottom: 10px; }
+        }
+      `;
+      document.head.appendChild(style);
+
+      const afterPrint = () => {
+        const s = document.getElementById("abc3-print-styles");
+        if (s) s.remove();
+        setPrintMode(false);
+      };
+      window.addEventListener("afterprint", afterPrint);
+      const handleVisibility = () => {
+        if (!document.hidden) {
+          const s = document.getElementById("abc3-print-styles");
+          if (s) s.remove();
+          setPrintMode(false);
+        }
+      };
+      window.addEventListener("visibilitychange", handleVisibility);
+      return () => {
+        window.removeEventListener("afterprint", afterPrint);
+        window.removeEventListener("visibilitychange", handleVisibility);
+        const s = document.getElementById("abc3-print-styles");
+        if (s) s.remove();
+      };
+    }
+  }, [printMode]);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 md:p-8">
@@ -169,11 +134,11 @@ export default function Abc3Page() {
         </h1>
 
         {/* Pencarian */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6 no-print">
           <h2 className="text-lg font-semibold mb-4 text-gray-700">
             Cari Data
           </h2>
-          <div className="flex gap-2">
+          <div className="flex gap-2 no-print">
             <input
               type="text"
               value={searchTerm}
@@ -213,7 +178,7 @@ export default function Abc3Page() {
                   Data tidak ditemukan
                 </p>
               ) : (
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto no-print">
                   <table className="w-full border-collapse">
                     <thead>
                       <tr className="bg-gray-100">
@@ -283,13 +248,13 @@ export default function Abc3Page() {
         </div>
 
         {/* Tabel Data yang Dipilih */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div id="print-section" className="bg-white rounded-lg shadow-md p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-700">
               Data APB ({tableData.length})
             </h2>
             {tableData.length > 0 && (
-              <div className="flex gap-2">
+              <div className="flex gap-2 no-print">
                 <button
                   onClick={handleSort}
                   className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors flex items-center gap-2 text-sm"
@@ -334,7 +299,7 @@ export default function Abc3Page() {
             )}
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto no-print">
             <table
               id="print-table"
               ref={tableRef}
@@ -416,3 +381,10 @@ export default function Abc3Page() {
     </div>
   );
 }
+
+
+
+
+
+
+
