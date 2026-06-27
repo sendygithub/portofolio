@@ -92,13 +92,16 @@ export default function Abc3Page() {
         @media print {
           body * { visibility: hidden; }
           #print-section, #print-section * { visibility: visible; }
-          #print-section { position: absolute; left: 0; top: 0; width: 100%; padding: 10mm; }
-          @page { margin: 5mm; size: landscape; }
+          #print-section { position: absolute; left: 0; top: 0; width: 58mm; padding: 2mm; }
+          @page { margin: 2mm; size: 58mm 297mm; }
           .no-print { display: none !important; }
-          table { font-size: 10pt; border-collapse: collapse; width: 100%; }
-          th, td { border: 1px solid black; padding: 4px 8px; text-align: left; }
+          table { font-size: 6pt; border-collapse: collapse; width: 100%; }
+          th, td { border: 1px solid black; padding: 1px 2px; text-align: left; }
           th { background-color: #e5e7eb !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-          h2 { text-align: center; font-size: 14pt; margin-bottom: 10px; }
+          h2 { text-align: center; font-size: 8pt; margin: 0 0 3px 0; }
+          /* Sembunyikan kolom Aksi */
+          th:nth-child(7), td:nth-child(7) { display: none !important; }
+          button { display: none !important; }
         }
       `;
       document.head.appendChild(style);
@@ -381,6 +384,12 @@ export default function Abc3Page() {
     </div>
   );
 }
+
+
+
+
+
+
 
 
 
