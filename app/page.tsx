@@ -8,9 +8,7 @@ import { Navbar } from "../components/Navbar";
 import { Contact } from "../components/Contact";
 import Experience from "../components/Experience";
 
-
 export default function Home() {
- 
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -20,8 +18,6 @@ export default function Home() {
       <Experience />
       <Contact />
       <Footer />
-      
-  
     </main>
   );
 }
