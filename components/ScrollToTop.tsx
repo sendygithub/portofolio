@@ -20,12 +20,14 @@ const ScrollToTop = () => {
     };
   }, []);
   return (
-    <Link href={"#beranda"} className="fixed bottom-10 right-10">
-      <i
-        className={`ri-arrow-up-circle-fill ri-4x text-slate-700 hover:text-slate-900 transition-colors ${
+    <Link href={"#home"} className="fixed bottom-10 right-10">
+      <span
+        className={`text-tertiary hover:text-tertiary/80 transition-colors text-4xl font-display ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
-      ></i>
+      >
+        ↑
+      </span>
     </Link>
   );
 };

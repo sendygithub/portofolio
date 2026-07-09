@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
   content: [
@@ -9,17 +10,38 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0a",
-        primary: {
-          gold: "#d4af37",
-          "gold-light": "#f4e4bc",
-          blue: "#00d4ff",
-          "blue-light": "#66e5ff",
-        },
+        background: "#1C2B45",
+        primary: "#F6F1E7",
+        secondary: "#A89878",
+        tertiary: "#C96F2E",
+        neutral: "#1C2B45",
+        surface: "#243351",
+        "on-primary": "#F6F1E7",
+      },
+      fontFamily: {
+        display: ["Oswald", "sans-serif"],
+        body: ["Inter", "sans-serif"],
+        label: ["Oswald", "sans-serif"],
+      },
+      fontSize: {
+        display: [
+          "4.75rem",
+          { lineHeight: "1.1", fontWeight: "700", letterSpacing: "0.02em" },
+        ],
+      },
+      borderRadius: {
+        sm: "0px",
+        md: "2px",
+        lg: "4px",
+      },
+      spacing: {
+        sm: "8px",
+        md: "16px",
+        lg: "32px",
       },
       animation: {
         "fade-in-up": "fadeInUp 0.6s ease-out",
-        "marquee": "marquee 20s linear infinite",
+        marquee: "marquee 20s linear infinite",
       },
       keyframes: {
         fadeInUp: {

@@ -1,60 +1,62 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import Link from "next/link";
 import { useRef } from "react";
 
 const projects = [
   {
     id: 1,
     title: "Rumah Peradaban Subang",
-    description: "Modern e-commerce solution with real-time inventory management and secure payment integration.",
+    description:
+      "Modern e-commerce solution with real-time inventory management and secure payment integration.",
     tech: ["Next.js", "TypeScript", "Stripe", "Tailwind"],
-    image: "💬",
-    gradient: "from-primary-gold to-primary-blue",
+    image: "📚",
     url: "https://rpsncsubang.vercel.app",
   },
   {
     id: 2,
-    title: "Human Resources Management System",
-    description: "Collaborative task management tool with real-time updates and team collaboration features.",
-    tech: ["React", "Node.js", "MongoDB", "Socket.io"],
-    image: "📋",
-    gradient: "from-primary-blue to-primary-gold",
-    url: "https://hrms-psi.vercel.app",
+    title: "Bintang Audio",
+    description:
+      "Rental platform for a premium audio equipment brand, featuring a sleek UI and secure checkout.",
+    tech: ["Next.js", "Prisma", "PostgreSQL", "Tailwind"],
+    image: "💽",
+    url: "https://bintang-audio.vercel.app",
   },
   {
     id: 3,
-    title: "Engineering Job Order",
-    description: "Beautiful portfolio website showcasing creative work with smooth animations and interactions.",
+    title: "Human Resources Divisi 4",
+    description:
+      "Comprehensive Human Resource Information System with payroll and attendance automation.",
     tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
-    image: "🎨",
-    gradient: "from-primary-gold to-primary-blue",
+    image: "🏗️",
+    url: "https://divisi-4.vercel.app",
   },
   {
     id: 4,
-    title: "Human Resources Dashboard",
-    description: "Comprehensive analytics dashboard with data visualization and real-time metrics tracking.",
+    title: "Sky-Fish online store",
+    description:
+      "online shop for a premium colectible fish and rare fish, featuring a sleek UI and secure checkout.",
     tech: ["React", "D3.js", "Python", "PostgreSQL"],
-    image: "📊",
-    gradient: "from-primary-blue to-primary-gold",
+    image: "🐠",
+    url: "https://sky-fish.vercel.app",
   },
   {
     id: 5,
     title: "RKK-Petshop",
-    description: "Social networking platform with feed, messaging, and content sharing capabilities.",
+    description:
+      "A modern full-stack PetShop web application built with Next.js, featuring product management, inventory tracking, customer management",
     tech: ["Next.js", "Prisma", "Vercel Blob", "AWS"],
-    image: "🛒",
-    gradient: "from-primary-gold to-primary-blue",
-    url: "https://rkk-petshop.vercel.app"
+    image: "🐶",
+    url: "https://rkk-petshop.vercel.app",
   },
   {
     id: 6,
-    title: "Basic-Logic",
-    description: "Interactive learning platform with courses, quizzes, and progress tracking.",
-    tech: ["Vue.js", "Express", "MongoDB", "Stripe"],
-    image: "📚",
-    gradient: "from-primary-blue to-primary-gold",
+    title: "Rumah Sakit setia budi",
+    description:
+      "Interactive learning platform with courses, quizzes, and progress tracking.",
+    tech: ["React.js", "Next.js", "PostgreSQL", "Stripe"],
+    image: "🏪",
+    url: "https://rumah-sakit-setia-budi.vercel.app",
   },
 ];
 
@@ -85,11 +87,7 @@ export default function Projects() {
   };
 
   return (
-    <section
-      id="projects"
-      ref={ref}
-      className="min-h-screen py-32 px-6"
-    >
+    <section id="projects" ref={ref} className="min-h-screen py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -97,12 +95,10 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-primary-gold to-primary-blue bg-clip-text text-transparent">
-              Featured Projects
-            </span>
+          <h2 className="text-4xl md:text-6xl font-display font-bold mb-4">
+            <span className="text-primary">Featured Projects</span>
           </h2>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <p className="text-secondary text-lg max-w-2xl mx-auto font-body">
             A collection of my recent work showcasing creativity and technical
             expertise
           </p>
@@ -118,26 +114,24 @@ export default function Projects() {
             <motion.div
               key={project.id}
               variants={cardVariants}
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-primary-gold/50 transition-all duration-300 overflow-hidden"
+              whileHover={{ scale: 1.02, y: -5 }}
+              className="group relative card border border-secondary/10 hover:border-tertiary/50 transition-all duration-300 overflow-hidden"
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-              />
-              
+              <div className="absolute inset-0 bg-tertiary opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+
               <div className="relative z-10">
                 <div className="text-5xl mb-4">{project.image}</div>
-                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-primary-gold transition-colors">
+                <h3 className="text-2xl font-display font-bold mb-3 text-primary group-hover:text-tertiary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-white/70 mb-4 leading-relaxed">
+                <p className="text-primary/70 mb-4 leading-relaxed font-body">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-white/10 rounded-full text-sm text-white/80 border border-white/20"
+                      className="px-3 py-1 bg-surface border border-secondary/20 text-xs text-secondary font-label uppercase tracking-widest"
                     >
                       {tech}
                     </span>
@@ -145,11 +139,10 @@ export default function Projects() {
                 </div>
                 <motion.a
                   whileHover={{ x: 5 }}
-                  className="text-primary-gold font-semibold flex items-center gap-2 group-hover:text-primary-blue transition-colors"
+                  className="text-tertiary font-label uppercase tracking-widest text-xs flex items-center gap-2 group-hover:text-tertiary transition-colors"
                   href={project.url}
                 >
-                   View Project →
-                 
+                  View Project →
                 </motion.a>
               </div>
             </motion.div>

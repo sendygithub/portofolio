@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const oswald = Oswald({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Portfolio Professional",
-  description: "Professional portfolio landing page",
+  title: "Sendy Andreansah | Denim Workwear Portfolio",
+  description:
+    "Heritage workwear: selvedge indigo, rivet copper. Junior Developer building digital experiences.",
 };
 
 export default function RootLayout({
@@ -16,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${oswald.variable} font-body`}>
+        {children}
+      </body>
     </html>
   );
 }

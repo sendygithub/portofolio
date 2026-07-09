@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +11,22 @@
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #ffffff;
+  background-color: #1c2b45;
+  color: #f6f1e7;
   overflow-x: hidden;
+  font-family: "Inter", sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-tertiary text-on-primary px-5 py-3 rounded-md font-label uppercase tracking-widest text-xs;
+  }
+
+  .card {
+    @apply bg-surface text-primary rounded-lg p-6;
+  }
 }
