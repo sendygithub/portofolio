@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed:user": "node --env-file=.env prisma/seed-user.mjs",
+    "scan:projects": "node --env-file=.env prisma/extract-projects.mjs --write",
     "postinstall": "prisma generate"
   },
   "dependencies": {
