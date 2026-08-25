@@ -49,7 +49,7 @@ export const Contact = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-primary">
-            Let's Build Something Great
+            Let&apos;s Build Something Great
           </h2>
           <p className="text-secondary text-lg max-w-2xl mx-auto font-body">
             Open for collaborations, freelance opportunities, or just a coffee

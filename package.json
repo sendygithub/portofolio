@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint .",
     "seed:user": "node --env-file=.env prisma/seed-user.mjs",
     "scan:projects": "node --env-file=.env prisma/extract-projects.mjs --write",
     "postinstall": "prisma generate"

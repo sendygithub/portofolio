@@ -418,8 +418,8 @@ export default function Abc3Page() {
                       colSpan={7}
                       className="border border-gray-300 px-4 py-8 text-center text-gray-500"
                     >
-                      Belum ada data. Cari data di database lalu klik tombol
-                      "Add" untuk menambahkan ke tabel.
+                      Belum ada data. Cari data di database lalu klik tombol{" "}
+                      &quot;Add&quot; untuk menambahkan ke tabel.
                     </td>
                   </tr>
                 ) : (
