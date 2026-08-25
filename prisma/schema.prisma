@@ -16,3 +16,38 @@ model Apb {
 
   @@map("apb")
 }
+
+model User {
+  id         Int            @id @default(autoincrement())
+  username   String         @unique
+  password   String
+  createdAt  DateTime       @default(now())
+  categories NoteCategory[]
+
+  @@map("users")
+}
+
+model NoteCategory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  position  Int      @default(0)
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  notes     Note[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("note_categories")
+}
+
+model Note {
+  id         Int          @id @default(autoincrement())
+  title      String       @default("")
+  content    String       @default("")
+  categoryId Int
+  category   NoteCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+
+  @@map("notes")
+}
