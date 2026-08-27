@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/dist/client/link";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -58,14 +59,15 @@ export function Navbar() {
               </motion.a>
             ))}
           </div>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary"
-          >
-            Get in Touch
-          </motion.button>
+          <Link href="/login" className="hidden md:block">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary"
+            >
+              Get in Touch
+            </motion.button>
+          </Link>
         </div>
       </div>
     </motion.nav>
