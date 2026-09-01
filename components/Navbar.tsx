@@ -53,7 +53,7 @@ export function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.1, color: "#C96F2E" }}
-                className="text-primary/80 hover:text-tertiary transition-colors duration-200 font-label uppercase tracking-widest text-xs"
+                className="text-primary hover:text-tertiary transition-colors duration-200 font-bold uppercase tracking-widest text-sm"
               >
                 {item.name}
               </motion.a>
@@ -63,7 +63,7 @@ export function Navbar() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary"
+              className="btn-primary font-bold"
             >
               Get in Touch
             </motion.button>

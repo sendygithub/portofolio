@@ -4,6 +4,90 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap");
 
+@layer base {
+  :root {
+    --background: 218 42% 19%;
+    --foreground: 40 45% 93%;
+    --primary: 25 63% 48%;
+    --primary-foreground: 40 45% 93%;
+    --secondary: 40 22% 57%;
+    --secondary-foreground: 218 42% 19%;
+    --muted: 220 38% 23%;
+    --muted-foreground: 40 22% 57%;
+    --accent: 25 63% 48%;
+    --accent-foreground: 40 45% 93%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 40 45% 93%;
+    --border: 220 38% 23%;
+    --input: 220 38% 23%;
+    --ring: 25 63% 48%;
+    --neutral: 218 42% 19%;
+    --surface: 220 38% 23%;
+    --tertiary: 25 63% 48%;
+    --on-primary: 40 45% 93%;
+    --radius: 0.25rem;
+  }
+
+  /* Light mode (default untuk /notes & /login) */
+  .notes-theme {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 9%;
+    --radius: 0.5rem;
+    --neutral: 0 0% 100%;
+    --surface: 0 0% 100%;
+    --tertiary: 0 0% 9%;
+    --on-primary: 0 0% 98%;
+  }
+
+  /* Dark mode untuk /notes & /login */
+  .notes-theme.dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 95%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 95%;
+    --neutral: 0 0% 7%;
+    --surface: 0 0% 10%;
+    --tertiary: 0 0% 95%;
+    --on-primary: 0 0% 9%;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -11,10 +95,12 @@
 }
 
 body {
-  background-color: #1c2b45;
-  color: #f6f1e7;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
@@ -29,4 +115,19 @@ html {
   .card {
     @apply bg-surface text-primary rounded-lg p-6;
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
 }

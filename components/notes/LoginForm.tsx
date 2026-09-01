@@ -3,7 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft, LogIn } from "lucide-react";
 import { notesApi } from "@/lib/notes-api";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LoginForm() {
   const router = useRouter();
@@ -27,82 +32,77 @@ export function LoginForm() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-surface border border-secondary/20 p-8">
-        <p className="font-label uppercase tracking-[0.2em] text-secondary text-xs mb-2">
-          Private Notes
-        </p>
-        <h1 className="font-display text-3xl font-bold uppercase text-primary mb-1">
-          Catatan Proyek
-        </h1>
-        <p className="text-sm text-secondary mb-8">
-          Login untuk membuka dashboard catatan pribadi.
-        </p>
+    <main className="notes-theme flex min-h-screen items-center justify-center bg-background px-4">
+      <Card className="w-full max-w-sm border-border bg-card">
+        <CardHeader className="space-y-1.5">
+          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+            Private
+          </p>
+          <CardTitle className="text-2xl font-semibold tracking-tight">
+            Catatan
+          </CardTitle>
+          <CardDescription>
+            Masuk untuk membuka catatan pribadimu.
+          </CardDescription>
+        </CardHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label
-              htmlFor="username"
-              className="block font-label uppercase tracking-[0.14em] text-xs text-secondary mb-2"
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-1.5">
+              <Label htmlFor="username" className="text-xs">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="admin"
+                autoComplete="username"
+                required
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="password" className="text-xs">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••"
+                autoComplete="current-password"
+                required
+              />
+            </div>
+
+            {error && (
+              <p className="text-xs text-destructive">{error}</p>
+            )}
+
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full"
             >
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="admin"
-              autoComplete="username"
-              required
-              className="w-full bg-background border border-secondary/30 px-4 py-3 text-primary placeholder:text-secondary/50 outline-none focus:border-tertiary transition-colors"
-            />
-          </div>
+              <LogIn className="h-4 w-4" />
+              {loading ? "Memproses..." : "Masuk"}
+            </Button>
+          </form>
+        </CardContent>
 
-          <div>
-            <label
-              htmlFor="password"
-              className="block font-label uppercase tracking-[0.14em] text-xs text-secondary mb-2"
-            >
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••"
-              autoComplete="current-password"
-              required
-              className="w-full bg-background border border-secondary/30 px-4 py-3 text-primary placeholder:text-secondary/50 outline-none focus:border-tertiary transition-colors"
-            />
-          </div>
+        <CardFooter className="flex flex-col gap-3">
+          <p className="text-center text-xs text-muted-foreground">
+            Demo: <span className="font-medium text-foreground">admin</span> / <span className="font-medium text-foreground">123</span>
+          </p>
 
-          {error && <p className="text-sm text-tertiary">{error}</p>}
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Memproses..." : "Masuk"}
-          </button>
-        </form>
-
-        <p className="text-xs text-secondary/60 mt-6 text-center">
-          Demo: username <span className="text-primary">admin</span> / password{" "}
-          <span className="text-primary">123</span>
-        </p>
-
-        <div className="mt-4 text-center">
           <Link
             href="/"
-            className="text-xs text-secondary hover:text-primary transition-colors"
+            className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
-            ← Kembali ke beranda
+            <ArrowLeft className="h-3 w-3" />
+            Kembali ke beranda
           </Link>
-        </div>
-      </div>
+        </CardFooter>
+      </Card>
     </main>
   );
 }

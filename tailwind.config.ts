@@ -10,13 +10,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#1C2B45",
-        primary: "#F6F1E7",
-        secondary: "#A89878",
-        tertiary: "#C96F2E",
-        neutral: "#1C2B45",
-        surface: "#243351",
-        "on-primary": "#F6F1E7",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        neutral: "hsl(var(--neutral))",
+        surface: "hsl(var(--surface))",
+        tertiary: "hsl(var(--tertiary))",
+        "on-primary": "hsl(var(--on-primary))",
       },
       fontFamily: {
         display: ["Oswald", "sans-serif"],
@@ -61,6 +87,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
