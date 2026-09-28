@@ -14,7 +14,7 @@ import Link from "next/link";
 import KiaNavbar from "@/components/kia/Navbar";
 import KiaFooter from "@/components/kia/Footer";
 
-const WA = "https://wa.me/6281233445566";
+const WA = "https://wa.me/6281281916880";
 
 const WA_SKRIPSI = `${WA}?text=${encodeURIComponent(
   "Halo Kia Komputer, saya mau konsultasi pendampingan skripsi"

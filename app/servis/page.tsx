@@ -267,7 +267,7 @@ export default function ServisPage() {
             className="flex flex-col md:flex-row gap-5 justify-center items-center"
           >
             <Link
-              href="https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20servis%20komputer%2Flaptop"
+              href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20servis%20komputer%2Flaptop"
               target="_blank"
             >
               <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-10 py-6 text-[15px] rounded-lg">
@@ -629,7 +629,7 @@ export default function ServisPage() {
           </p>
           <div className="flex flex-col md:flex-row gap-5 justify-center items-center">
             <Link
-              href="https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20konsultasi%20servis"
+              href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20konsultasi%20servis"
               target="_blank"
             >
               <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-12 py-7 text-[15px] rounded-lg">
@@ -640,7 +640,7 @@ export default function ServisPage() {
             </Link>
             <p className="text-[#A8B0BC]/50 text-[13px] font-medium">
               atau hubungi{" "}
-              <span className="text-white font-medium">0812-3344-5566</span>
+              <span className="text-white font-medium">0812-8191-6880</span>
             </p>
           </div>
         </motion.div>

@@ -50,6 +50,18 @@ export function NotesPanel({
   onUpdate,
   onDelete,
 }: NotesPanelProps) {
+  // Hook harus dipanggil tanpa syarat dan dalam urutan yang sama di setiap render.
+  // Karena itu diletakkan SEBELUM early return di bawah (react-hooks/rules-of-hooks).
+  const filtered = useMemo(() => {
+    if (!search.trim()) return notes;
+    const q = search.toLowerCase();
+    return notes.filter(
+      (n) =>
+        n.title.toLowerCase().includes(q) ||
+        n.content.toLowerCase().includes(q),
+    );
+  }, [notes, search]);
+
   if (!categoryName) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
@@ -64,16 +76,6 @@ export function NotesPanel({
       </div>
     );
   }
-
-  const filtered = useMemo(() => {
-    if (!search.trim()) return notes;
-    const q = search.toLowerCase();
-    return notes.filter(
-      (n) =>
-        n.title.toLowerCase().includes(q) ||
-        n.content.toLowerCase().includes(q),
-    );
-  }, [notes, search]);
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">

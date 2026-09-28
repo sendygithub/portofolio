@@ -208,7 +208,7 @@ export default function WaktuPengerjaanPage() {
             akan berikan estimasi waktu yang akurat.
           </p>
           <Link
-            href="https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20estimasi%20waktu%20pengerjaan%20servis"
+            href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20estimasi%20waktu%20pengerjaan%20servis"
             target="_blank"
           >
             <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-8 py-6 text-[15px] rounded-lg">

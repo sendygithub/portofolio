@@ -645,7 +645,7 @@ function BundleCard({ bundle, index }: { bundle: BundleItem; index: number }) {
             {bundle.savings}
           </span>
           <Link
-            href={`https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(bundle.title)}`}
+            href={`https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(bundle.title)}`}
             target="_blank"
           >
             <span className="w-full inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium text-[14px] py-5 rounded-lg">
@@ -717,7 +717,7 @@ export default function HargaPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
+              href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
               target="_blank"
             >
               <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-8 py-6 text-[15px] rounded-lg">
@@ -973,7 +973,7 @@ export default function HargaPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href="https://wa.me/6281233445566?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
+              href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
               target="_blank"
             >
               <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-10 py-7 text-[15px] rounded-lg">
@@ -984,7 +984,7 @@ export default function HargaPage() {
             </Link>
             <p className="text-[13px] text-[#A8B0BC]/50">
               atau hubungi{" "}
-              <span className="text-white font-medium">0812-3344-5566</span>
+              <span className="text-white font-medium">0812-8191-6880</span>
             </p>
           </div>
         </div>

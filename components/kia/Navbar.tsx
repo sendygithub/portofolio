@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 
 const WA_KONSULTASI =
-  "https://wa.me/6281233445566?text=" +
+  "https://wa.me/6281281916880?text=" +
   encodeURIComponent("Halo Kia Komputer, saya mau konsultasi gratis");
 
 const navLinks = [
