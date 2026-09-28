@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -175,7 +175,7 @@ export default function Abc3Page() {
           .no-print { display: none !important; }
           table { font-size: 6pt; border-collapse: collapse; width: 100%; }
           th, td { border: 1px solid black; padding: 1px 2px; text-align: left; }
-          th { background-color: #e5e7eb !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          th { background-color: #e8e0d4 !important; font-weight: bold; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           h2 { text-align: center; font-size: 8pt; margin: 0 0 3px 0; }
           /* Sembunyikan kolom Aksi */
           th:nth-child(7), td:nth-child(7) { display: none !important; }
@@ -208,15 +208,15 @@ export default function Abc3Page() {
   }, [printMode]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">
+        <h1 className="text-2xl font-bold mb-6 text-foreground">
           Form Input APB
         </h1>
 
         {/* Pencarian */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6 no-print">
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">
+        <div className="bg-card border border-border p-6 mb-6 no-print">
+          <h2 className="text-lg font-semibold mb-4 text-foreground">
             Cari Data
           </h2>
           <div className="flex gap-2 no-print">
@@ -226,12 +226,12 @@ export default function Abc3Page() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleSearchKeyDown}
               placeholder="Cari data di database..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              className="flex-1 px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
             />
             <button
               onClick={handleSearch}
               disabled={searching}
-              className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+              className="px-5 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 disabled:opacity-50 transition-colors flex items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -255,63 +255,63 @@ export default function Abc3Page() {
           {searched && (
             <div className="mt-4">
               {searchResults.length === 0 ? (
-                <p className="text-gray-500 text-center py-4">
+                <p className="text-muted-foreground text-center py-4">
                   Data tidak ditemukan
                 </p>
               ) : (
                 <div className="overflow-x-auto no-print">
                   <table className="w-full border-collapse">
                     <thead>
-                      <tr className="bg-gray-100">
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                      <tr className="bg-background">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           ID
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           APB
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           No Spek
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           Sudut
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           Lebar Ply
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-left text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-left text-xs font-semibold text-foreground">
                           Toleransi
                         </th>
-                        <th className="border border-gray-300 px-3 py-2 text-center text-xs font-semibold text-gray-700">
+                        <th className="border border-border px-3 py-2 text-center text-xs font-semibold text-foreground">
                           Aksi
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       {searchResults.map((item) => (
-                        <tr key={item.id} className="hover:bg-gray-50">
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                        <tr key={item.id} className="hover:bg-muted">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.id}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.apb}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.noSpek}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.sudut}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.lebar}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-gray-800">
+                          <td className="border border-border px-3 py-2 text-sm text-foreground">
                             {item.toleransi}
                           </td>
-                          <td className="border border-gray-300 px-3 py-2 text-sm text-center">
+                          <td className="border border-border px-3 py-2 text-sm text-center">
                             <button
                               onClick={() => handleAddToTable(item)}
                               disabled={tableData.some((d) => d.id === item.id)}
-                              className="px-3 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                              className="px-3 py-1 bg-primary text-primary-foreground rounded text-xs hover:bg-primary/90 disabled:bg-input disabled:cursor-not-allowed transition-colors"
                             >
                               {tableData.some((d) => d.id === item.id)
                                 ? "Sudah"
@@ -329,16 +329,16 @@ export default function Abc3Page() {
         </div>
 
         {/* Tabel Data yang Dipilih */}
-        <div id="print-section" className="bg-white rounded-lg shadow-md p-6">
+        <div id="print-section" className="bg-card border border-border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-700">
+            <h2 className="text-lg font-semibold text-foreground">
               Data APB ({tableData.length})
             </h2>
             {tableData.length > 0 && (
               <div className="flex gap-2 no-print">
                 <button
                   onClick={handleSort}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors flex items-center gap-2 text-sm"
+                  className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors flex items-center gap-2 text-sm"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -358,7 +358,7 @@ export default function Abc3Page() {
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors flex items-center gap-2 text-sm"
+                  className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors flex items-center gap-2 text-sm"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -387,26 +387,26 @@ export default function Abc3Page() {
               className="w-full border-collapse"
             >
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                <tr className="bg-muted">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     No
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     APB
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     No Spek
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     Sudut
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     Lebar Ply
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-left text-sm font-semibold text-foreground">
                     Toleransi
                   </th>
-                  <th className="border border-gray-300 px-4 py-2 text-center text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-2 text-center text-sm font-semibold text-foreground">
                     Aksi
                   </th>
                 </tr>
@@ -416,7 +416,7 @@ export default function Abc3Page() {
                   <tr>
                     <td
                       colSpan={7}
-                      className="border border-gray-300 px-4 py-8 text-center text-gray-500"
+                      className="border border-border px-4 py-8 text-center text-muted-foreground"
                     >
                       Belum ada data. Cari data di database lalu klik tombol{" "}
                       &quot;Add&quot; untuk menambahkan ke tabel.
@@ -424,29 +424,29 @@ export default function Abc3Page() {
                   </tr>
                 ) : (
                   tableData.map((item, index) => (
-                    <tr key={item.id} className="hover:bg-gray-50">
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                    <tr key={item.id} className="hover:bg-muted">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {index + 1}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.apb}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.noSpek}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.sudut}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.lebar}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.toleransi}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-center">
+                      <td className="border border-border px-4 py-2 text-sm text-center">
                         <button
                           onClick={() => handleRemoveFromTable(item.id)}
-                          className="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition-colors"
+                          className="px-2 py-1 bg-destructive text-destructive-foreground rounded text-xs hover:bg-destructive/90 transition-colors"
                         >
                           Hapus
                         </button>

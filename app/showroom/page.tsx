@@ -6,8 +6,6 @@ import Link from "next/link";
 import {
   Search,
   ChevronRight,
-  MessageCircle,
-  ArrowRight,
   Globe,
   Monitor,
   Smartphone,
@@ -18,7 +16,6 @@ import {
   Layers,
   ExternalLink,
   Star,
-  Clock3,
   Sparkles,
 } from "lucide-react";
 import Image from "next/image";
@@ -469,7 +466,7 @@ export default function DemoPage() {
   });
 
   return (
-    <main className="min-h-screen bg-black text-[#A8B0BC] selection:bg-[#1C69D4]/20 overflow-x-hidden">
+    <main className="min-h-screen bg-background text-muted-foreground selection:bg-accent overflow-x-hidden">
       <KiaNavbar />
       <div className="h-20 w-full" />
 
@@ -480,13 +477,13 @@ export default function DemoPage() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Premium Showcase
             </span>
-            <h1 className="text-[40px] md:text-[80px] font-bold tracking-[-0.02em] leading-[1.05] text-white mt-4 mb-6">
+            <h1 className=" font-bold leading-[1.02] text-[2.75rem] md:text-[5rem] text-foreground mt-4 mb-6">
               Project Showroom
             </h1>
-            <p className="text-[15px] text-[#A8B0BC] max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-[15px] text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
               Eksplorasi mahakarya aplikasi Sistem Informasi yang kami bangun
               dengan standar industri dan teknologi terkini.
             </p>
@@ -494,18 +491,18 @@ export default function DemoPage() {
 
           {/* SEARCH BAR */}
           <div className="relative max-w-2xl mx-auto mb-10">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A8B0BC]/50 pointer-events-none" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/80 pointer-events-none" />
             <input
               type="text"
               placeholder="Cari solusi atau teknologi..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-transparent border border-white/[0.12] py-4 pl-11 pr-10 text-[14px] text-white placeholder:text-[#A8B0BC]/50 focus:outline-none focus:border-white/[0.25] transition-colors"
+              className="w-full bg-transparent border border-input py-4 pl-11 pr-10 text-[14px] text-foreground placeholder:text-muted-foreground/80 focus:outline-none focus:border-input transition-colors"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#A8B0BC]/50 hover:text-[#A8B0BC] transition-colors text-[13px]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/80 hover:text-muted-foreground transition-colors text-[13px]"
               >
                 Clear
               </button>
@@ -520,8 +517,8 @@ export default function DemoPage() {
                 onClick={() => setActiveFilter(stack)}
                 className={`px-4 py-2 text-[12px] font-medium transition-all duration-300 border flex items-center gap-2 ${
                   activeFilter === stack
-                    ? "bg-[#1C69D4]/10 border-[#1C69D4]/30 text-white"
-                    : "bg-transparent border-white/[0.06] text-[#A8B0BC]/50 hover:border-white/[0.12] hover:text-[#A8B0BC]"
+                    ? "bg-accent border-input text-foreground"
+                    : "bg-transparent border-border text-muted-foreground/80 hover:border-foreground/30 hover:text-muted-foreground"
                 }`}
               >
                 {stack !== "All" &&
@@ -545,13 +542,13 @@ export default function DemoPage() {
         {filteredReal.length > 0 && (
           <section className="mb-24">
             <div className="mb-12">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#1C69D4]">
+              <span className=" uppercase text-[11px] tracking-wider font-medium text-primary">
                 ★ Featured Projects
               </span>
-              <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-3">
+              <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-3">
                 Project Aktif & Live
               </h2>
-              <p className="text-[15px] text-[#A8B0BC] max-w-2xl leading-relaxed">
+              <p className="text-[15px] text-muted-foreground max-w-2xl leading-relaxed">
                 Klik card untuk melihat langsung website yang sudah online dan
                 bisa diakses publik.
               </p>
@@ -571,53 +568,50 @@ export default function DemoPage() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block relative overflow-hidden border border-white/[0.06] bg-[#141619] transition-all duration-500 hover:border-white/[0.12] hover:-translate-y-1"
+                    className="group block relative overflow-hidden border border-border bg-card transition-all duration-500 hover:border-foreground/30 hover:-translate-y-1"
                   >
                     {/* Browser mockup bar */}
                     <div className="px-5 pt-5 pb-3">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="flex gap-1.5">
-                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-destructive/80" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-primary/80" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-muted-foreground" />
                         </div>
                         <div className="flex-1 mx-3">
-                          <div className="bg-white/[0.03] px-3 py-1.5 flex items-center gap-2">
-                            <Globe className="w-3 h-3 text-[#A8B0BC]/30" />
-                            <span className="text-[10px] text-[#A8B0BC]/30 truncate font-mono">
+                          <div className="bg-muted px-3 py-1.5 flex items-center gap-2">
+                            <Globe className="w-3 h-3 text-muted-foreground/80" />
+                            <span className="text-[10px] text-muted-foreground/80 truncate font-mono">
                               {project.url.replace("https://", "")}
                             </span>
                           </div>
                         </div>
-                        <ExternalLink className="w-4 h-4 text-[#A8B0BC]/30 group-hover:text-[#1C69D4] transition-colors" />
+                        <ExternalLink className="w-4 h-4 text-muted-foreground/80 group-hover:text-primary transition-colors" />
                       </div>
 
                       {/* Preview Area */}
-                      <div className="relative overflow-hidden h-48 bg-[#0D0E10] flex items-center justify-center">
-                        <div className="absolute inset-0 overflow-hidden">
-                          <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#1C69D4]/10 rounded-full blur-3xl" />
-                          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-[#1C69D4]/10 rounded-full blur-3xl" />
-                        </div>
+                      <div className="relative overflow-hidden h-48 bg-muted flex items-center justify-center">
+
                         <div className="relative z-10 text-center px-6">
-                          <div className="w-16 h-16 mx-auto mb-4 border border-white/[0.06] bg-white/[0.03] flex items-center justify-center">
-                            <Globe className="w-8 h-8 text-[#A8B0BC]" />
+                          <div className="w-16 h-16 mx-auto mb-4 border border-border bg-muted flex items-center justify-center">
+                            <Globe className="w-8 h-8 text-muted-foreground" />
                           </div>
-                          <h3 className="text-lg font-semibold text-white mb-2">
+                          <h3 className="text-lg font-semibold text-foreground mb-2">
                             {project.title.split("—")[0].trim()}
                           </h3>
-                          <p className="text-[13px] text-[#A8B0BC]/50 mb-4">
+                          <p className="text-[13px] text-muted-foreground/80 mb-4">
                             {project.title.split("—")[1]?.trim() ||
                               project.category}
                           </p>
                           <div className="flex items-center justify-center gap-3">
-                            <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1C69D4]">
+                            <span className=" uppercase text-[10px] tracking-wider font-medium text-primary">
                               Live
                             </span>
                             <div className="flex -space-x-1.5">
                               {project.stack.slice(0, 3).map((tech) => (
                                 <div
                                   key={tech}
-                                  className="w-7 h-7 rounded-full bg-[#141619] border-2 border-black flex items-center justify-center p-1.5"
+                                  className="w-7 h-7 bg-card border border-input flex items-center justify-center p-1.5"
                                   title={tech}
                                 >
                                   <Image
@@ -634,7 +628,7 @@ export default function DemoPage() {
                         </div>
 
                         {/* Overlay on hover */}
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        <div className="absolute inset-0 flex items-center justify-center bg-foreground/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                           <motion.div
                             initial={false}
                             animate={
@@ -644,10 +638,10 @@ export default function DemoPage() {
                             }
                             className="flex flex-col items-center gap-3"
                           >
-                            <div className="p-4 border border-[#1C69D4]/30 bg-[#1C69D4]/10">
-                              <ExternalLink className="w-8 h-8 text-[#1C69D4]" />
+                            <div className="p-4 border border-input bg-accent">
+                              <ExternalLink className="w-8 h-8 text-primary" />
                             </div>
-                            <span className="text-sm font-semibold text-[#1C69D4] tracking-wider uppercase">
+                            <span className=" uppercase tracking-wider text-[11px] font-medium text-primary">
                               Kunjungi Website
                             </span>
                           </motion.div>
@@ -658,24 +652,24 @@ export default function DemoPage() {
                     {/* Content */}
                     <div className="px-5 pb-6">
                       <div className="flex items-center justify-between mb-3">
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+                        <span className=" uppercase text-[10px] tracking-wider font-medium text-muted-foreground/80">
                           {project.category}
                         </span>
                         <div className="flex gap-0.5">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <Star
                               key={star}
-                              className="w-3 h-3 text-[#1C69D4] fill-[#1C69D4]"
+                              className="w-3 h-3 text-primary fill-primary"
                             />
                           ))}
                         </div>
                       </div>
 
-                      <h3 className="text-[17px] font-semibold text-white mb-2 group-hover:text-[#1C69D4] transition-colors">
+                      <h3 className="text-[17px] font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
 
-                      <p className="text-[13px] text-[#A8B0BC] leading-relaxed mb-4 line-clamp-2">
+                      <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2">
                         {project.desc}
                       </p>
 
@@ -687,7 +681,7 @@ export default function DemoPage() {
                           return (
                             <span
                               key={feature}
-                              className="inline-flex items-center gap-1 px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-[#A8B0BC]/50 border border-white/[0.06]"
+                              className="inline-flex items-center gap-1 px-2 py-1 text-[10px]  uppercase tracking-wider text-muted-foreground/80 border border-border"
                             >
                               <FeatureIcon className="w-3 h-3" />
                               {feature}
@@ -696,12 +690,12 @@ export default function DemoPage() {
                         })}
                       </div>
 
-                      <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                      <div className="pt-4 border-t border-border flex items-center justify-between">
                         <div className="flex -space-x-2">
                           {project.stack.map((tech) => (
                             <div
                               key={tech}
-                              className="w-8 h-8 rounded-full bg-[#141619] border-2 border-black flex items-center justify-center p-2 hover:z-10 transition-transform hover:scale-125"
+                              className="w-8 h-8 bg-card border border-input flex items-center justify-center p-2 hover:z-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary"
                               title={tech}
                             >
                               <Image
@@ -714,7 +708,7 @@ export default function DemoPage() {
                             </div>
                           ))}
                         </div>
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/30 group-hover:text-[#1C69D4] transition-colors">
+                        <span className=" uppercase text-[10px] tracking-wider font-medium text-muted-foreground/80 group-hover:text-primary transition-colors">
                           Live Demo →
                         </span>
                       </div>
@@ -729,13 +723,13 @@ export default function DemoPage() {
         {/* ===== ON PROCESS SECTION ===== */}
         <section className="mb-24">
           <div className="mb-12">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#1C69D4]">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-primary">
               New Project On Process!
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-3">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-3">
               Project Baru & Eksperimen Aktif
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-2xl leading-relaxed">
+            <p className="text-[15px] text-muted-foreground max-w-2xl leading-relaxed">
               Kumpulan halaman dan demo yang sedang disiapkan. Beberapa sudah
               bisa dibuka, sisanya masih dummy untuk project berikutnya.
             </p>
@@ -746,31 +740,31 @@ export default function DemoPage() {
               <Link
                 key={project.title}
                 href={project.href}
-                className="group relative overflow-hidden border border-white/[0.06] bg-[#141619] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#1C69D4]/30"
+                className="group relative overflow-hidden border border-border bg-card p-6 transition-all duration-500 hover:-translate-y-1 hover:border-foreground/30"
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#1C69D4]/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="absolute inset-x-0 top-0 h-px bg-primary opacity-0 transition-opacity group-hover:opacity-100" />
                 <div className="mb-7 flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center border border-white/[0.06] bg-white/[0.03] text-[#A8B0BC]">
+                  <div className="flex h-12 w-12 items-center justify-center border border-border bg-muted text-muted-foreground">
                     <Sparkles className="h-5 w-5" />
                   </div>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1C69D4]">
+                  <span className=" uppercase text-[10px] tracking-wider font-medium text-primary">
                     {project.status}
                   </span>
                 </div>
-                <p className="mb-3 font-mono text-xs font-bold text-[#A8B0BC]/25">
+                <p className="mb-3 font-mono text-xs font-bold text-muted-foreground/80">
                   0{index + 1}
                 </p>
-                <h3 className="text-[17px] font-semibold text-white transition-colors group-hover:text-[#1C69D4]">
+                <h3 className="text-[17px] font-semibold text-foreground transition-colors group-hover:text-primary">
                   {project.title}
                 </h3>
-                <p className="mt-3 min-h-[72px] text-[13px] leading-relaxed text-[#A8B0BC]">
+                <p className="mt-3 min-h-[72px] text-[13px] leading-relaxed text-muted-foreground">
                   {project.desc}
                 </p>
-                <div className="mt-6 flex flex-wrap gap-2 border-t border-white/[0.06] pt-5">
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-border pt-5">
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="text-[10px] font-medium uppercase tracking-wider text-[#A8B0BC]/50 border border-white/[0.06] px-2.5 py-1"
+                      className="text-[10px]  uppercase tracking-wider text-muted-foreground/80 border border-border px-2.5 py-1"
                     >
                       {tech}
                     </span>
@@ -797,28 +791,28 @@ export default function DemoPage() {
                 whileHover={{ y: -5 }}
               >
                 <Link href={`/demo/${project.slug}`}>
-                  <div className="group bg-[#141619] border-white/[0.06] hover:border-white/[0.12] transition-all duration-500 cursor-pointer overflow-hidden h-full flex flex-col rounded-xl">
+                  <div className="group bg-card border-border transition-all duration-500 hover:shadow-md cursor-pointer overflow-hidden h-full flex flex-col rounded-lg">
                     <div className="p-8">
                       <div className="flex justify-between items-center mb-6">
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+                        <span className=" uppercase text-[10px] tracking-wider font-medium text-muted-foreground/80">
                           {project.category}
                         </span>
-                        <div className="p-2 bg-white/[0.03] border border-white/[0.06] group-hover:bg-[#1C69D4]/10 group-hover:border-[#1C69D4]/30 transition-all duration-500">
-                          <ChevronRight className="w-4 h-4 text-[#A8B0BC] group-hover:text-[#1C69D4]" />
+                        <div className="p-2 bg-muted border border-border group-hover:bg-muted group-hover:border-foreground/30 transition-all duration-500">
+                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                         </div>
                       </div>
-                      <h3 className="text-[17px] font-semibold text-white mb-4 group-hover:text-[#1C69D4] transition-colors">
+                      <h3 className="text-[17px] font-semibold text-foreground mb-4 group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-[13px] text-[#A8B0BC] leading-relaxed mb-8 line-clamp-3">
+                      <p className="text-[13px] text-muted-foreground leading-relaxed mb-8 line-clamp-3">
                         {project.desc}
                       </p>
-                      <div className="mt-auto pt-6 border-t border-white/[0.06] flex items-center justify-between">
+                      <div className="mt-auto pt-6 border-t border-border flex items-center justify-between">
                         <div className="flex -space-x-3">
                           {project.stack.map((s) => (
                             <div
                               key={s}
-                              className="w-10 h-10 rounded-full bg-[#141619] border-2 border-black flex items-center justify-center p-2.5 hover:z-10 transition-transform hover:scale-125"
+                              className="w-10 h-10 bg-card border border-input flex items-center justify-center p-2.5 hover:z-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary"
                               title={s}
                             >
                               <Image
@@ -831,7 +825,7 @@ export default function DemoPage() {
                             </div>
                           ))}
                         </div>
-                        <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/30 group-hover:text-[#1C69D4] transition-colors">
+                        <span className=" uppercase text-[10px] tracking-wider font-medium text-muted-foreground/80 group-hover:text-primary transition-colors">
                           View Details
                         </span>
                       </div>

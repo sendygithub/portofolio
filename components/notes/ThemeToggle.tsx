@@ -27,15 +27,31 @@ export function ThemeToggle() {
 
   useEffect(() => {
     if (!mounted) return;
-    const root = document.querySelector(".notes-theme");
-    if (!root) return;
-    if (theme === "dark") {
-      root.classList.add("dark");
+    // Portal (mis. drawer mobile) dirender di luar root utama, jadi tema
+    // diterapkan ke <html> agar seluruh subtree — termasuk portal — mewarisi
+    // token, sekaligus ke setiap root .notes-theme yang sudah ada.
+    const html = document.documentElement;
+    const isDark = theme === "dark";
+
+    if (isDark) {
+      html.classList.add("dark");
     } else {
-      root.classList.remove("dark");
+      html.classList.remove("dark");
     }
+
+    document.querySelectorAll(".notes-theme").forEach((root) => {
+      root.classList.toggle("dark", isDark);
+    });
+
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme, mounted]);
+
+  // Keluar dari halaman /notes: jangan tinggalkan <html> dalam keadaan gelap.
+  useEffect(() => {
+    return () => {
+      document.documentElement.classList.remove("dark");
+    };
+  }, []);
 
   function toggle() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
@@ -43,10 +59,10 @@ export function ThemeToggle() {
 
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="icon"
       onClick={toggle}
-      className="h-9 w-9 shrink-0 text-muted-foreground hover:text-foreground"
+      className="h-9 w-9 shrink-0"
       title={theme === "dark" ? "Mode terang" : "Mode gelap"}
       aria-label="Toggle theme"
     >

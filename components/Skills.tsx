@@ -6,21 +6,17 @@ import { keahlian, POSISI_DICARI } from "../lib/portfolio";
 export default function Skills() {
   return (
     <section id="skills" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mb-14 border-b border-secondary/20 pb-6"
+          className="section-header"
         >
-          <p className="font-label uppercase tracking-widest text-xs text-tertiary mb-3">
-            02 — Keahlian
-          </p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-3">
-            Yang bisa saya kerjakan
-          </h2>
-          <p className="text-primary/70 font-body max-w-2xl">
+          <p className="section-label">02 — Keahlian</p>
+          <h2 className="section-title">Yang bisa saya kerjakan</h2>
+          <p className="section-desc">
             Tiga blok pertama itu isi pekerjaan IT Support sehari-hari. Blok
             terakhir nilai tambahnya.
           </p>
@@ -36,22 +32,22 @@ export default function Skills() {
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
             >
               <div className="flex items-baseline gap-4 mb-1">
-                <span className="font-display font-bold text-tertiary text-xl">
+                <span className="numbered-label text-xl">
                   {kelompok.nomor}
                 </span>
-                <h3 className="text-xl md:text-2xl font-display font-bold text-primary">
+                <h3 className="text-xl md:text-2xl  font-bold text-foreground">
                   {kelompok.judul}
                 </h3>
               </div>
-              <p className="text-secondary font-body text-sm mb-5 md:ml-10">
+              <p className="text-muted-foreground font-body text-sm mb-5 md:ml-10">
                 {kelompok.ringkas}
               </p>
 
-              <ul className="space-y-2 md:ml-10 border-l border-secondary/20 pl-5">
+              <ul className="space-y-2 md:ml-10 border-l border-border pl-5">
                 {kelompok.daftar.map((item) => (
                   <li
                     key={item}
-                    className="text-primary/80 font-body text-sm leading-relaxed"
+                    className="text-muted-foreground font-body text-sm leading-relaxed relative pl-4 before:content-['◆'] before:text-primary before:absolute before:left-0"
                   >
                     {item}
                   </li>
@@ -66,10 +62,10 @@ export default function Skills() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mt-16 text-center text-secondary font-body"
+          className="mt-16 text-center text-muted-foreground font-body"
         >
           Sedang mencari posisi{" "}
-          <span className="text-primary">{POSISI_DICARI}</span> di Tangerang,
+          <span className="text-foreground font-medium">{POSISI_DICARI}</span> di Tangerang,
           Jakarta, dan sekitarnya. Bersedia kerja shift dan on-site.
         </motion.p>
       </div>

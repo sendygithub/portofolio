@@ -1,15 +1,28 @@
 import type { Config } from "tailwindcss";
-import type { PluginAPI } from "tailwindcss/types/config";
 
+/* Konfigurasi standar shadcn/ui (Tailwind v3) — palet `neutral` hitam-putih */
 const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
+  prefix: "",
   theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
     extend: {
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -20,6 +33,10 @@ const config: Config = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -28,65 +45,68 @@ const config: Config = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
-        success: {
-          DEFAULT: "hsl(var(--success))",
-          foreground: "hsl(var(--success-foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        neutral: "hsl(var(--neutral))",
-        surface: "hsl(var(--surface))",
-        tertiary: "hsl(var(--tertiary))",
-        "on-primary": "hsl(var(--on-primary))",
-      },
-      fontFamily: {
-        display: ["Oswald", "sans-serif"],
-        body: ["Inter", "sans-serif"],
-        label: ["Oswald", "sans-serif"],
-      },
-      fontSize: {
-        display: [
-          "4.75rem",
-          { lineHeight: "1.1", fontWeight: "700", letterSpacing: "0.02em" },
-        ],
       },
       borderRadius: {
-        sm: "0px",
-        md: "2px",
-        lg: "4px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      spacing: {
-        sm: "8px",
-        md: "16px",
-        lg: "32px",
-      },
-      animation: {
-        "fade-in-up": "fadeInUp 0.6s ease-out",
-        marquee: "marquee 20s linear infinite",
+      fontFamily: {
+        sans: [
+          "var(--font-sans)",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        /* alias lama -> tetap Inter, supaya markup legacy tidak kehilangan tipografi */
+        display: [
+          "var(--font-sans)",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        body: [
+          "var(--font-sans)",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
+        label: [
+          "var(--font-sans)",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+        ],
       },
       keyframes: {
-        fadeInUp: {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(20px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
+
 export default config;

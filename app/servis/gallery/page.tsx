@@ -9,7 +9,6 @@ import {
   Cpu,
   HardDrive,
   Wrench,
-  ShieldCheck,
   Zap,
   Sparkles,
   X,
@@ -22,9 +21,6 @@ const categories = [
     id: "perbaikan-hardware",
     label: "Perbaikan Hardware",
     icon: <Wrench className="w-4 h-4" />,
-    gradient: "from-amber-500/20 to-orange-500/10",
-    border: "border-amber-500/30",
-    textColor: "text-amber-300",
     images: [
       "/servis/servis 1.jpeg",
       "/servis/servis 2.jpeg",
@@ -36,9 +32,6 @@ const categories = [
     id: "instalasi-software",
     label: "Instalasi Software",
     icon: <Monitor className="w-4 h-4" />,
-    gradient: "from-violet-500/20 to-purple-500/10",
-    border: "border-violet-500/30",
-    textColor: "text-violet-300",
     images: [
       "/servis/servis 5.jpeg",
       "/servis/servis 6.jpeg",
@@ -49,9 +42,6 @@ const categories = [
     id: "fix-bluescreen",
     label: "Fix Problem Sistem BlueScreen",
     icon: <Zap className="w-4 h-4" />,
-    gradient: "from-red-500/20 to-rose-500/10",
-    border: "border-red-500/30",
-    textColor: "text-red-300",
     images: [
       "/servis/servis 8.jpeg",
       "/servis/servis 9.jpeg",
@@ -62,9 +52,6 @@ const categories = [
     id: "upgrade-komponen",
     label: "Upgrade Komponen",
     icon: <Cpu className="w-4 h-4" />,
-    gradient: "from-cyan-500/20 to-blue-500/10",
-    border: "border-cyan-500/30",
-    textColor: "text-cyan-300",
     images: [
       "/servis/servis 11.jpeg",
       "/servis/servis 12.jpeg",
@@ -76,9 +63,6 @@ const categories = [
     id: "perbaikan-laptop",
     label: "Perbaikan Laptop",
     icon: <HardDrive className="w-4 h-4" />,
-    gradient: "from-pink-500/20 to-fuchsia-500/10",
-    border: "border-pink-500/30",
-    textColor: "text-pink-300",
     images: [
       "/servis/servis 16.jpeg",
       "/servis/servis 17.jpeg",
@@ -105,32 +89,20 @@ function GalleryContent() {
   const activeCat = categories.find((c) => c.id === activeCategory);
 
   return (
-    <main className="min-h-screen bg-[#020617] text-slate-200 selection:bg-[#d4af37]/20">
-      {/* Ambient Glow */}
-      <div className="fixed top-0 -left-10 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[150px] -z-10" />
-      <div className="fixed bottom-0 -right-10 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[150px] -z-10" />
-      <div
-        className="fixed inset-0 -z-10 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.3) 1px, transparent 0)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <main className="min-h-screen bg-background text-foreground selection:bg-accent">
       {/* Header */}
-      <div className="sticky top-0 z-40 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5">
+      <div className="sticky top-0 z-40 bg-background/90  border-b border-border">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link
             href="/servis"
-            className="flex items-center gap-2 text-slate-400 hover:text-[#d4af37] transition-colors group"
+            className="flex items-center gap-2 text-muted-foreground/80 hover:text-primary transition-colors group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             <span className="text-sm font-medium">Kembali ke Servis</span>
           </Link>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center bg-gradient-to-r from-amber-500/20 to-blue-500/20 text-amber-300 border border-amber-400/30 rounded-full px-3 py-1 text-xs font-medium">
+            <span className="inline-flex items-center gap-1.5 border border-primary px-3 py-1  uppercase text-[10px] tracking-wider text-primary">
               <Sparkles className="w-3 h-3 mr-1" />
               Gallery
             </span>
@@ -144,7 +116,7 @@ function GalleryContent() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight"
+            className="text-3xl md:text-5xl font-bold text-foreground mb-4 tracking-tight"
           >
             {activeCategory === "all"
               ? "Galeri Dokumentasi"
@@ -154,7 +126,7 @@ function GalleryContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-slate-400 max-w-2xl"
+            className="text-muted-foreground/80 max-w-2xl"
           >
             {activeCategory === "all"
               ? "Koleksi dokumentasi pekerjaan servis komputer dan laptop Prisma Komputer."
@@ -170,10 +142,10 @@ function GalleryContent() {
           >
             <button
               onClick={() => router.push("/servis/gallery")}
-              className={`px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 ${
+              className={`px-4 py-2 text-[11px]  uppercase tracking-wider border transition-all duration-300 ${
                 activeCategory === "all"
-                  ? "bg-[#d4af37]/20 border-[#d4af37]/40 text-[#d4af37]"
-                  : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20 hover:text-white"
+                  ? "bg-accent border-primary text-primary"
+                  : "bg-muted border-input text-muted-foreground/80 hover:border-foreground/30 hover:text-foreground"
               }`}
             >
               Semua
@@ -184,10 +156,10 @@ function GalleryContent() {
                 onClick={() =>
                   router.push(`/servis/gallery?category=${cat.id}`)
                 }
-                className={`px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 flex items-center gap-1.5 ${
+                className={`px-4 py-2 text-[11px]  uppercase tracking-wider border transition-all duration-300 flex items-center gap-1.5 ${
                   activeCategory === cat.id
-                    ? `${cat.border} ${cat.textColor} bg-white/10`
-                    : "bg-white/5 border-white/10 text-slate-400 hover:border-white/20 hover:text-white"
+                    ? "border-primary text-primary bg-accent"
+                    : "bg-muted border-input text-muted-foreground/80 hover:border-foreground/30 hover:text-foreground"
                 }`}
               >
                 {cat.icon}
@@ -207,14 +179,14 @@ function GalleryContent() {
                 viewport={{ once: true }}
                 className="flex items-center gap-3 mb-6"
               >
-                <div
-                  className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.gradient} flex items-center justify-center ${cat.textColor}`}
-                >
+                <div className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground">
                   {cat.icon}
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-white">{cat.label}</h2>
-                  <p className="text-xs text-slate-500">
+                  <h2 className="text-lg font-bold text-foreground">
+                    {cat.label}
+                  </h2>
+                  <p className="text-xs text-muted-foreground/80">
                     {cat.images.length} foto
                   </p>
                 </div>
@@ -229,7 +201,7 @@ function GalleryContent() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.05 }}
-                  className="group relative overflow-hidden rounded-2xl border border-white/5 aspect-[4/3] cursor-pointer"
+                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden border border-border"
                   onClick={() => setSelectedImage(image)}
                 >
                   <Image
@@ -238,9 +210,9 @@ function GalleryContent() {
                     fill
                     className="object-cover transition duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+                  <div className="absolute inset-0 bg-black/55 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="absolute bottom-3 left-3 right-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-300">
-                    <p className="text-white text-xs font-medium truncate">
+                    <p className="truncate text-xs font-medium text-white">
                       {cat.label}
                     </p>
                   </div>
@@ -252,11 +224,11 @@ function GalleryContent() {
 
         {filteredCategories.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-slate-500">
+            <p className="text-muted-foreground/80">
               Tidak ada dokumentasi untuk kategori ini.
             </p>
             <Link href="/servis/gallery">
-              <span className="inline-flex items-center justify-center mt-4 border border-white/10 text-slate-400 px-4 py-2 rounded-full text-xs font-medium hover:border-white/20 hover:text-white transition-all">
+              <span className="inline-flex items-center justify-center mt-4 border border-input text-muted-foreground px-4 py-2 text-[11px]  uppercase tracking-wider hover:border-primary hover:text-primary transition-all">
                 Lihat Semua
               </span>
             </Link>
@@ -269,12 +241,12 @@ function GalleryContent() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-foreground/80  flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all z-10"
+            className="absolute top-6 right-6 w-12 h-12 border border-input bg-card hover:border-primary hover:text-primary flex items-center justify-center text-foreground transition-all z-10"
           >
             <X className="w-6 h-6" />
           </button>
@@ -289,23 +261,23 @@ function GalleryContent() {
               src={selectedImage}
               alt="Dokumentasi"
               fill
-              className="object-contain rounded-2xl"
+              className="object-contain"
               priority
             />
           </motion.div>
 
-          <p className="absolute bottom-8 text-slate-400 text-sm">
+          <p className="absolute bottom-8 text-muted-foreground/80 text-sm">
             Klik di luar gambar untuk menutup
           </p>
         </motion.div>
       )}
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-10 px-8 mt-10">
+      <footer className="border-t border-border py-10 px-8 mt-10">
         <div className="max-w-7xl mx-auto text-center">
           <Link
             href="/servis"
-            className="text-sm text-slate-500 hover:text-[#d4af37] transition-colors"
+            className="text-sm text-muted-foreground/80 hover:text-primary transition-colors"
           >
             ← Kembali ke halaman Servis
           </Link>
@@ -319,8 +291,8 @@ export default function GalleryPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#020617] flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-[#d4af37] border-t-transparent rounded-full animate-spin" />
+        <div className="min-h-screen bg-background flex items-center justify-center">
+          <div className="w-8 h-8 border border-primary rounded-full animate-spin" />
         </div>
       }
     >

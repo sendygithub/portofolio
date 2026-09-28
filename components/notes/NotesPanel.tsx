@@ -65,11 +65,11 @@ export function NotesPanel({
   if (!categoryName) {
     return (
       <div className="flex flex-1 items-center justify-center p-6">
-        <div className="text-center">
-          <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
-            <StickyNote className="h-5 w-5 text-muted-foreground" />
+        <div className="max-w-sm text-center">
+          <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center border border-input">
+            <StickyNote className="h-5 w-5 text-primary" />
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="body-sm">
             Pilih atau buat kategori untuk mulai mencatat.
           </p>
         </div>
@@ -79,14 +79,14 @@ export function NotesPanel({
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <header className="flex h-14 shrink-0 items-center justify-between gap-3 border-b px-4 md:px-6">
+      <header className="flex h-16 shrink-0 items-center justify-between gap-3 border-b border-border px-4 md:px-6">
         <div className="min-w-0">
-          <h2 className="truncate text-base font-semibold tracking-tight">
+          <p className="eyebrow">
+            {String(notes.length).padStart(2, "0")} Catatan
+          </p>
+          <h2 className="truncate  text-[15px] font-bold uppercase leading-tight tracking-wide">
             {categoryName}
           </h2>
-          <p className="truncate text-xs text-muted-foreground">
-            {notes.length} catatan
-          </p>
         </div>
         <Button onClick={onCreate} size="sm">
           <Plus className="h-4 w-4" />
@@ -96,13 +96,13 @@ export function NotesPanel({
 
       <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4 md:px-6 md:py-6">
         {filtered.length === 0 && notes.length === 0 && (
-          <div className="flex h-full flex-col items-center justify-center gap-3 rounded-lg border border-dashed py-20 text-center">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-secondary">
-              <Plus className="h-5 w-5 text-muted-foreground" />
+          <div className="flex h-full flex-col items-center justify-center gap-4 border border-dashed border-input py-20 text-center">
+            <div className="flex h-11 w-11 items-center justify-center border border-input">
+              <Plus className="h-5 w-5 text-primary" />
             </div>
-            <div className="space-y-0.5">
-              <p className="text-sm font-medium">Belum ada catatan</p>
-              <p className="text-xs text-muted-foreground">
+            <div>
+              <p className="display-4 uppercase tracking-wide">Belum ada catatan</p>
+              <p className="body-sm mt-1">
                 Mulai dengan catatan pertamamu.
               </p>
             </div>
@@ -115,16 +115,14 @@ export function NotesPanel({
 
         {filtered.length === 0 && notes.length > 0 && (
           <div className="flex h-full flex-col items-center justify-center gap-2 py-16 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="body-sm">
               Tidak ada catatan yang cocok dengan &ldquo;{search}&rdquo;
             </p>
-            <p className="text-xs text-muted-foreground">
-              Coba kata kunci lain.
-            </p>
+            <p className="eyebrow">Coba kata kunci lain.</p>
           </div>
         )}
 
-        <div className="grid h-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid h-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((note) => (
             <NoteCard
               key={note.id}
@@ -166,13 +164,13 @@ function NoteCard({ note, onUpdate, onDelete }: NoteCardProps) {
   }
 
   return (
-    <article className="flex h-full flex-col rounded-lg border border-border bg-card p-4 transition-colors hover:border-foreground/20">
+    <article className="flex h-full flex-col border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/30">
       <div className="flex min-h-0 flex-1 flex-col space-y-3">
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Tanpa judul"
-          className="h-8 shrink-0 border-0 bg-transparent px-0 text-base font-semibold shadow-none focus-visible:ring-0"
+          className="h-8 shrink-0 border-0 bg-transparent px-0  text-[15px] font-semibold uppercase tracking-wide"
         />
 
         <Textarea
@@ -180,19 +178,21 @@ function NoteCard({ note, onUpdate, onDelete }: NoteCardProps) {
           onChange={(e) => setContent(e.target.value)}
           placeholder="Tulis sesuatu..."
           rows={4}
-          className="min-h-0 flex-1 resize-none border-0 bg-transparent px-0 text-sm leading-relaxed shadow-none focus-visible:ring-0"
+          className="min-h-0 flex-1 resize-none border-0 bg-transparent px-0 text-sm leading-relaxed"
         />
 
-        <div className="flex shrink-0 items-center justify-between gap-3 pt-1">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span>{timeAgo(note.updatedAt)}</span>
+        <div className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-t border-border pt-3">
+          <div className="flex items-center gap-2">
+            <span className=" text-[10px] uppercase tracking-wider text-muted-foreground/80">
+              {timeAgo(note.updatedAt)}
+            </span>
             {isDirty && !saved && (
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+              <span className="inline-flex items-center border border-input px-2 py-0.5  text-[9px] uppercase tracking-wider text-muted-foreground">
                 Belum disimpan
               </span>
             )}
             {saved && (
-              <span className="rounded-full bg-foreground px-2 py-0.5 text-[10px] font-medium text-background">
+              <span className="inline-flex items-center border border-primary px-2 py-0.5  text-[9px] uppercase tracking-wider text-primary">
                 Tersimpan
               </span>
             )}
@@ -203,7 +203,7 @@ function NoteCard({ note, onUpdate, onDelete }: NoteCardProps) {
                 onClick={handleSave}
                 disabled={saving}
                 size="sm"
-                className="h-8 bg-success text-success-foreground hover:bg-success/90"
+                className="h-8"
               >
                 <Save className="h-3.5 w-3.5" />
                 {saving ? "Menyimpan..." : "Simpan"}
@@ -213,7 +213,7 @@ function NoteCard({ note, onUpdate, onDelete }: NoteCardProps) {
               onClick={() => onDelete(note.id)}
               variant="ghost"
               size="icon"
-              className="h-8 w-8 text-muted-foreground hover:bg-destructive hover:text-destructive-foreground"
+              className="h-8 w-8 hover:text-destructive"
               title="Hapus catatan"
             >
               <Trash2 className="h-3.5 w-3.5" />

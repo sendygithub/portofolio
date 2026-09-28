@@ -34,56 +34,53 @@ export default function KiaNavbar() {
   return (
     <motion.nav
       ref={navRef}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-6 py-4 ${
+      initial={{ y: -40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         isScrolled
-          ? "md:top-4 md:mx-auto md:max-w-5xl md:rounded-sm border-white/[0.06] bg-[#141619]/80 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] border"
-          : "bg-transparent border-b border-transparent"
+          ? "border-b border-border bg-background"
+          : "border-b border-transparent bg-transparent"
       }`}
     >
-      {/* Scroll Progress Indicator */}
+      {/* Garis rambut progres gulir — bukan glow */}
       <motion.div
-        className="absolute top-0 left-0 right-0 h-[2px] bg-[#1C69D4] origin-left z-[60]"
+        className="absolute top-0 left-0 right-0 h-[1px] origin-left bg-primary z-[60]"
         style={{ scaleX }}
       />
 
-      <div className="flex items-center justify-between relative z-10">
+      <div className="shell flex items-center justify-between py-5">
         {/* Brand */}
-        <Link href="/kiarakomputer" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-[#1C69D4] flex items-center justify-center font-semibold text-white text-[16px]">
-            K
-          </div>
-          <span className="text-[17px] font-semibold text-white tracking-tight">
+        <Link href="/kiarakomputer" className="flex items-baseline gap-2">
+          <span className=" text-[20px] font-bold leading-none text-foreground">
             Kia Komputer
           </span>
+          <span className="h-1.5 w-1.5 translate-y-[-2px] bg-primary" />
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-1 bg-white/[0.03] p-1 border border-white/[0.06]">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="px-3 py-1.5 text-[13px] font-medium text-[#A8B0BC]/70 hover:text-white transition-colors rounded-sm"
+              className="eyebrow transition-transform duration-300 hover:translate-x-1 hover:text-foreground"
             >
               {link.name}
             </Link>
           ))}
         </div>
 
-        {/* Actions */}
+        {/* Actions — satu aksi terisi saja */}
         <div className="flex items-center gap-3">
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <a
             href={WA_KONSULTASI}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium rounded-sm px-5 py-2 text-[13px]"
+            className="btn-accent px-4 py-2.5"
           >
             Konsultasi
-          </motion.a>
+          </a>
         </div>
       </div>
     </motion.nav>

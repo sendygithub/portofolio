@@ -21,9 +21,6 @@ import {
   Smile,
   Download,
   ChevronDown,
-  Sparkles,
-  Wifi,
-  Laptop,
 } from "lucide-react";
 import Link from "next/link";
 import KiaNavbar from "@/components/kia/Navbar";
@@ -213,7 +210,7 @@ export default function ServisPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-[#A8B0BC] selection:bg-[#1C69D4]/20 overflow-x-hidden">
+    <main className="min-h-screen bg-background text-muted-foreground selection:bg-accent overflow-x-hidden">
       {/* ===== NAVBAR ===== */}
       <KiaNavbar />
 
@@ -231,7 +228,7 @@ export default function ServisPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Servis Komputer & Laptop Tangerang
             </span>
           </motion.div>
@@ -240,11 +237,11 @@ export default function ServisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-[40px] md:text-[80px] font-bold tracking-[-0.02em] leading-[1.05] mt-6 mb-6"
+            className=" font-bold leading-[1.02] text-[2.75rem] md:text-[5rem] mt-6 mb-6"
           >
-            <span className="text-white">Prisma Komputer</span>
+            <span className="text-foreground">Prisma Komputer</span>
             <br />
-            <span className="text-[#A8B0BC]">
+            <span className="text-muted-foreground">
               Servis & Perbaikan Profesional
             </span>
           </motion.h1>
@@ -253,7 +250,7 @@ export default function ServisPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-[15px] text-[#A8B0BC] max-w-3xl mx-auto mb-10 leading-relaxed"
+            className="text-[15px] text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed"
           >
             Melayani servis komputer dan laptop di wilayah Tangerang. Dari rakit
             PC, upgrade hardware, instalasi software, hingga perbaikan
@@ -270,7 +267,7 @@ export default function ServisPage() {
               href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20servis%20komputer%2Flaptop"
               target="_blank"
             >
-              <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-10 py-6 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-10 py-6 text-[15px] rounded-md">
                 <MessageCircle className="mr-2 w-5 h-5" />
                 Hubungi WhatsApp
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -278,7 +275,7 @@ export default function ServisPage() {
             </Link>
 
             <Link href="#services">
-              <span className="inline-flex items-center justify-center border border-white/[0.12] text-[#A8B0BC] hover:text-white hover:border-white/[0.25] px-10 py-6 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center border border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground px-10 py-6 text-[15px] rounded-md">
                 Lihat Layanan
                 <ChevronDown className="ml-2 w-4 h-4" />
               </span>
@@ -299,7 +296,7 @@ export default function ServisPage() {
             ].map((tag, i) => (
               <span
                 key={i}
-                className="text-[13px] text-[#A8B0BC]/50 font-medium"
+                className="text-[13px] text-muted-foreground/80 font-medium"
               >
                 {tag}
               </span>
@@ -309,16 +306,16 @@ export default function ServisPage() {
       </section>
 
       {/* ===== DOCUMENTATION GALLERY ===== */}
-      <section id="dokumentasi" className="border-y border-white/[0.06] py-24">
+      <section id="dokumentasi" className="border-y border-border py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Dokumentasi
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-4">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-4">
               Hasil pekerjaan kami
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[15px] text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Beberapa dokumentasi saat melakukan servis laptop, upgrade
               hardware, perakitan PC, instalasi sistem operasi, dan maintenance
               komputer.
@@ -367,7 +364,7 @@ export default function ServisPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.08 }}
-                  className="group relative overflow-hidden border border-white/[0.06] aspect-[4/3] cursor-pointer"
+                  className="group relative overflow-hidden border border-border aspect-[4/3] cursor-pointer"
                 >
                   <Image
                     src={item.src}
@@ -375,12 +372,12 @@ export default function ServisPage() {
                     fill
                     className="object-cover transition duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="absolute bottom-5 left-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
-                    <p className="text-white font-semibold text-[14px]">
+                    <p className=" font-semibold text-[15px] text-white">
                       {item.label}
                     </p>
-                    <p className="text-[12px] text-[#A8B0BC]">
+                    <p className="text-[12px] text-white/75">
                       Klik untuk melihat
                     </p>
                   </div>
@@ -399,13 +396,13 @@ export default function ServisPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Layanan Kami
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-4">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-4">
               Solusi Lengkap
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-lg mx-auto">
+            <p className="text-[15px] text-muted-foreground max-w-lg mx-auto">
               Dari perbaikan ringan hingga rakit PC high-end, semua kami tangani
               dengan profesional dan penuh dedikasi.
             </p>
@@ -421,24 +418,24 @@ export default function ServisPage() {
         >
           {services.map((service, i) => (
             <motion.div key={i} variants={itemVariants}>
-              <div className="group bg-[#141619] border-white/[0.06] hover:border-white/[0.12] transition-all duration-500 h-full rounded-xl">
+              <div className="group bg-card border-border transition-all duration-500 hover:shadow-md h-full rounded-lg">
                 <div className="p-8">
-                  <div className="w-12 h-12 flex items-center justify-center mb-6 text-[#A8B0BC] group-hover:text-[#1C69D4] transition-colors duration-500">
+                  <div className="w-12 h-12 flex items-center justify-center mb-6 text-muted-foreground group-hover:text-primary transition-colors duration-500">
                     {service.icon}
                   </div>
-                  <h3 className="text-[17px] font-semibold text-white mb-3 group-hover:text-[#1C69D4] transition-colors">
+                  <h3 className="text-[17px] font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-[13px] text-[#A8B0BC] leading-relaxed mb-5">
+                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-5">
                     {service.desc}
                   </p>
                   <ul className="space-y-2.5">
                     {service.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex items-start gap-2.5 text-[12px] text-[#A8B0BC]/70"
+                        className="flex items-start gap-2.5 text-[12px] text-muted-foreground"
                       >
-                        <CheckCircle2 className="w-4 h-4 text-[#1C69D4] mt-0.5 shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" />
                         {item}
                       </li>
                     ))}
@@ -453,7 +450,7 @@ export default function ServisPage() {
       {/* ===== KENAPA PILIH KAMI ===== */}
       <section
         id="keunggulan"
-        className="px-6 py-28 border-y border-white/[0.06]"
+        className="px-6 py-28 border-y border-border"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -462,13 +459,13 @@ export default function ServisPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+              <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
                 Keunggulan
               </span>
-              <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-4">
+              <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-4">
                 Kenapa Pilih Kami?
               </h2>
-              <p className="text-[15px] text-[#A8B0BC] max-w-lg mx-auto">
+              <p className="text-[15px] text-muted-foreground max-w-lg mx-auto">
                 Kami tidak hanya servis, tapi memberikan solusi terbaik untuk
                 perangkat Anda.
               </p>
@@ -484,14 +481,14 @@ export default function ServisPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="bg-[#141619] border border-white/[0.06] p-8 text-center hover:border-white/[0.12] transition-all duration-500 h-full">
-                  <div className="w-12 h-12 flex items-center justify-center mx-auto mb-6 text-[#A8B0BC] group-hover:text-[#1C69D4] transition-colors">
+                <div className="bg-card border border-border p-8 text-center hover:border-foreground/30 transition-all duration-500 h-full">
+                  <div className="w-12 h-12 flex items-center justify-center mx-auto mb-6 text-muted-foreground group-hover:text-primary transition-colors">
                     {item.icon}
                   </div>
-                  <h3 className="text-[16px] font-semibold text-white mb-3">
+                  <h3 className="text-[16px] font-semibold text-foreground mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-[13px] text-[#A8B0BC] leading-relaxed">
+                  <p className="text-[13px] text-muted-foreground leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -509,13 +506,13 @@ export default function ServisPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Testimoni
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-4">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-4">
               Apa Kata Pelanggan?
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-lg mx-auto">
+            <p className="text-[15px] text-muted-foreground max-w-lg mx-auto">
               Kepercayaan pelanggan adalah prioritas utama kami.
             </p>
           </motion.div>
@@ -529,28 +526,28 @@ export default function ServisPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              className="bg-[#141619] border border-white/[0.06] p-8 hover:border-white/[0.12] transition-all duration-500 relative group"
+              className="bg-card border border-border p-8 hover:border-foreground/30 transition-all duration-500 relative group"
             >
               <div className="flex gap-1 mb-5">
                 {Array.from({ length: testi.rating }).map((_, j) => (
                   <Star
                     key={j}
-                    className="w-4 h-4 fill-[#1C69D4] text-[#1C69D4]"
+                    className="w-4 h-4 fill-primary text-primary"
                   />
                 ))}
               </div>
-              <p className="text-[14px] text-[#A8B0BC] leading-relaxed mb-6 italic">
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-6 italic">
                 &ldquo;{testi.text}&rdquo;
               </p>
-              <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5">
-                <div className="w-10 h-10 bg-[#1C69D4] flex items-center justify-center text-[12px] font-semibold text-white">
+              <div className="flex items-center gap-3 border-t border-border pt-5">
+                <div className="w-10 h-10 bg-primary flex items-center justify-center text-[12px] font-semibold text-primary-foreground">
                   {testi.initials}
                 </div>
                 <div>
-                  <p className="text-[14px] font-semibold text-white">
+                  <p className="text-[14px] font-semibold text-foreground">
                     {testi.name}
                   </p>
-                  <p className="text-[11px] text-[#A8B0BC]/50 font-medium uppercase tracking-[0.1em]">
+                  <p className="text-[11px] text-muted-foreground/80 font-medium uppercase tracking-wider">
                     {testi.role}
                   </p>
                 </div>
@@ -561,20 +558,20 @@ export default function ServisPage() {
       </section>
 
       {/* ===== FAQ ===== */}
-      <section id="faq" className="px-6 py-28 border-y border-white/[0.06]">
+      <section id="faq" className="px-6 py-28 border-y border-border">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               FAQ
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-4">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-lg mx-auto">
+            <p className="text-[15px] text-muted-foreground max-w-lg mx-auto">
               Kami memberikan penjelasan lengkap untuk pertanyaan yang sering
               diajukan.
             </p>
@@ -591,18 +588,18 @@ export default function ServisPage() {
             >
               <Link
                 href={faq.href}
-                className="group flex items-center justify-between border border-white/[0.06] bg-[#141619] p-6 transition-all duration-300 hover:border-white/[0.12]"
+                className="group flex items-center justify-between border border-border bg-card p-6 transition-all duration-300 hover:border-foreground/30"
               >
                 <div className="pr-6">
-                  <h3 className="text-[15px] font-semibold text-white transition-colors group-hover:text-[#1C69D4]">
+                  <h3 className="text-[15px] font-semibold text-foreground transition-colors group-hover:text-primary">
                     {faq.q}
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-[#A8B0BC]">
+                  <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
                     {faq.a}
                   </p>
                 </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/[0.06] bg-white/[0.03] transition-all duration-300 group-hover:border-[#1C69D4]/30 group-hover:bg-[#1C69D4]/10">
-                  <ArrowRight className="h-4 w-4 text-[#A8B0BC] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#1C69D4]" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-muted transition-all duration-300 group-hover:border-foreground/30 group-hover:bg-muted">
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
                 </div>
               </Link>
             </motion.div>
@@ -617,13 +614,13 @@ export default function ServisPage() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
-          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+          <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
             Gratis Konsultasi
           </span>
-          <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-4 mb-4">
+          <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-4 mb-4">
             Siap Servis Komputer?
           </h2>
-          <p className="text-[15px] text-[#A8B0BC] max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-[15px] text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed">
             Konsultasi dulu aja gratis! Ceritakan masalah perangkat Anda, kami
             akan kasih solusi terbaik.
           </p>
@@ -632,15 +629,15 @@ export default function ServisPage() {
               href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20konsultasi%20servis"
               target="_blank"
             >
-              <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-12 py-7 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-12 py-7 text-[15px] rounded-md">
                 <MessageCircle className="mr-3 w-5 h-5" />
                 Klik Disini WhatsApp
                 <ArrowRight className="ml-2 w-4 h-4" />
               </span>
             </Link>
-            <p className="text-[#A8B0BC]/50 text-[13px] font-medium">
+            <p className="text-muted-foreground/80 text-[13px] font-medium">
               atau hubungi{" "}
-              <span className="text-white font-medium">0812-8191-6880</span>
+              <span className="text-foreground font-medium">0812-8191-6880</span>
             </p>
           </div>
         </motion.div>

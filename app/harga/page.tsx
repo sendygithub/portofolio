@@ -503,30 +503,30 @@ function CategoryCard({
   return (
     <div
       id={`cat-${index}`}
-      className="scroll-mt-28 border-b border-white/[0.06] last:border-b-0"
+      className="scroll-mt-28 border-b border-border last:border-b-0"
     >
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between py-5 px-1 group text-left"
       >
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 flex items-center justify-center text-[#A8B0BC] group-hover:text-white transition-colors shrink-0">
+          <div className="w-10 h-10 flex items-center justify-center text-muted-foreground group-hover:text-foreground transition-colors shrink-0">
             {category.icon}
           </div>
           <div>
-            <h3 className="text-[15px] font-semibold text-white">
+            <h3 className="text-[15px] font-semibold text-foreground">
               {category.title}
             </h3>
-            <p className="text-[13px] text-[#A8B0BC] mt-0.5 leading-relaxed max-w-lg">
+            <p className="text-[13px] text-muted-foreground mt-0.5 leading-relaxed max-w-lg">
               {category.description}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-3 shrink-0">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50 tabular-nums">
+          <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80 tabular-nums">
             {category.items.length} item
           </span>
-          <div className="w-7 h-7 flex items-center justify-center text-[#A8B0BC]/50 group-hover:text-[#A8B0BC] transition-colors">
+          <div className="w-7 h-7 flex items-center justify-center text-muted-foreground/80 group-hover:text-muted-foreground transition-colors">
             {isExpanded ? (
               <Minus className="w-4 h-4" />
             ) : (
@@ -550,12 +550,12 @@ function CategoryCard({
                 <div
                   key={itemIndex}
                   className={`flex items-center justify-between py-2.5 px-4 transition-colors ${
-                    item.popular ? "bg-white/[0.03]" : "hover:bg-white/[0.02]"
+                    item.popular ? "bg-muted" : "hover:bg-muted"
                   }`}
                 >
                   <div className="flex items-start gap-2.5 flex-1 min-w-0 pr-4">
                     {item.popular && (
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#1C69D4] shrink-0 mt-0.5">
+                      <span className=" uppercase text-[10px] tracking-wider font-medium text-primary shrink-0 mt-0.5">
                         ★
                       </span>
                     )}
@@ -563,14 +563,14 @@ function CategoryCard({
                       <span
                         className={`text-[14px] ${
                           item.popular
-                            ? "text-white font-medium"
-                            : "text-[#A8B0BC]"
+                            ? "text-foreground font-medium"
+                            : "text-muted-foreground"
                         }`}
                       >
                         {item.name}
                       </span>
                       {item.note && (
-                        <span className="block text-[12px] text-[#A8B0BC]/50 mt-0.5">
+                        <span className="block text-[12px] text-muted-foreground/80 mt-0.5">
                           {item.note}
                         </span>
                       )}
@@ -578,7 +578,7 @@ function CategoryCard({
                   </div>
                   <span
                     className={`text-[14px] font-medium tabular-nums shrink-0 ${
-                      item.popular ? "text-[#1C69D4]" : "text-white"
+                      item.popular ? "text-primary" : "text-foreground"
                     }`}
                   >
                     {item.price}
@@ -604,51 +604,51 @@ function BundleCard({ bundle, index }: { bundle: BundleItem; index: number }) {
     >
       {bundle.popular && (
         <div className="absolute -top-[1px] left-6 right-6 z-10">
-          <div className="bg-[#1C69D4] text-[11px] font-semibold text-white px-3 py-1 text-center mx-auto w-fit">
+          <div className="bg-primary text-[11px] font-semibold text-primary-foreground px-3 py-1 text-center mx-auto w-fit">
             Paling Laris
           </div>
         </div>
       )}
       <div
-        className={`bg-[#141619] border ${
-          bundle.popular ? "border-[#1C69D4]/30" : "border-white/[0.06]"
+        className={`bg-card border ${
+          bundle.popular ? "border-input" : "border-border"
         } pt-7 pb-8 px-7 h-full flex flex-col`}
       >
-        <div className="w-9 h-9 flex items-center justify-center text-[#A8B0BC] mb-5">
+        <div className="w-9 h-9 flex items-center justify-center text-muted-foreground mb-5">
           {bundle.icon}
         </div>
-        <h3 className="text-[17px] font-semibold text-white mb-1.5">
+        <h3 className="text-[17px] font-semibold text-foreground mb-1.5">
           {bundle.title}
         </h3>
-        <p className="text-[13px] text-[#A8B0BC] mb-6 leading-relaxed">
+        <p className="text-[13px] text-muted-foreground mb-6 leading-relaxed">
           {bundle.description}
         </p>
         <ul className="space-y-2 mb-8 flex-1">
           {bundle.items.map((item, j) => (
             <li
               key={j}
-              className="flex items-start gap-2.5 text-[13px] text-[#A8B0BC]"
+              className="flex items-start gap-2.5 text-[13px] text-muted-foreground"
             >
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#1C69D4] mt-0.5 shrink-0" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
               {item}
             </li>
           ))}
         </ul>
-        <div className="pt-6 border-t border-white/[0.06]">
+        <div className="pt-6 border-t border-border">
           <div className="flex items-baseline justify-between mb-4">
-            <span className="text-[13px] text-[#A8B0BC]/50">Harga</span>
-            <span className="text-xl font-semibold text-white">
+            <span className="text-[13px] text-muted-foreground/80">Harga</span>
+            <span className="text-xl font-semibold text-foreground">
               {bundle.price}
             </span>
           </div>
-          <span className="block text-[12px] text-[#1C69D4]/70 font-medium mb-4">
+          <span className="block text-[12px] text-primary font-medium mb-4">
             {bundle.savings}
           </span>
           <Link
             href={`https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(bundle.title)}`}
             target="_blank"
           >
-            <span className="w-full inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium text-[14px] py-5 rounded-lg">
+            <span className="w-full inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium text-[14px] py-5 rounded-md">
               <MessageCircle className="w-4 h-4 mr-2" />
               Ambil Paket Ini
             </span>
@@ -691,7 +691,7 @@ export default function HargaPage() {
     : priceCategories;
 
   return (
-    <main className="min-h-screen bg-black text-[#A8B0BC] selection:bg-white/10 overflow-x-hidden">
+    <main className="min-h-screen bg-background text-muted-foreground selection:bg-accent overflow-x-hidden">
       <KiaNavbar />
       <div className="h-20 w-full" />
 
@@ -702,16 +702,16 @@ export default function HargaPage() {
           className="max-w-3xl"
         >
           <div className="mb-8">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Price List
             </span>
           </div>
-          <h1 className="text-[40px] md:text-[80px] font-bold tracking-[-0.02em] leading-[1.05] text-white mb-6">
+          <h1 className=" font-bold leading-[1.02] text-[2.75rem] md:text-[5rem] text-foreground mb-6">
             Harga Servis
             <br />
-            <span className="text-[#A8B0BC]">Transparan & Terjangkau</span>
+            <span className="text-muted-foreground">Transparan & Terjangkau</span>
           </h1>
-          <p className="text-[15px] text-[#A8B0BC] max-w-xl leading-relaxed mb-10">
+          <p className="text-[15px] text-muted-foreground max-w-xl leading-relaxed mb-10">
             Semua harga sudah termasuk jasa servis. Biaya spare part dihitung
             terpisah sesuai harga pasar. Konsultasi gratis, bayar setelah beres.
           </p>
@@ -720,14 +720,14 @@ export default function HargaPage() {
               href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
               target="_blank"
             >
-              <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-8 py-6 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-8 py-6 text-[15px] rounded-md">
                 <MessageCircle className="mr-2 w-4 h-4" />
                 Tanya Harga via WhatsApp
                 <ArrowRight className="ml-2 w-4 h-4" />
               </span>
             </Link>
             <Link href="#price-list">
-              <span className="inline-flex items-center justify-center border border-white/[0.12] text-[#A8B0BC] hover:text-white hover:border-white/[0.25] px-8 py-6 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center border border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground px-8 py-6 text-[15px] rounded-md">
                 Lihat Price List
                 <ChevronDown className="ml-2 w-4 h-4" />
               </span>
@@ -742,7 +742,7 @@ export default function HargaPage() {
             ].map((tag, i) => (
               <span
                 key={i}
-                className="text-[13px] text-[#A8B0BC]/50 font-medium"
+                className="text-[13px] text-muted-foreground/80 font-medium"
               >
                 {tag}
               </span>
@@ -754,18 +754,18 @@ export default function HargaPage() {
       {/* SEARCH */}
       <div className="px-8 pb-8 max-w-3xl">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#A8B0BC]/50 pointer-events-none" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground/80 pointer-events-none" />
           <input
             type="text"
             placeholder="Cari layanan atau harga..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent border border-white/[0.12] py-3.5 pl-11 pr-10 text-[14px] text-white placeholder:text-[#A8B0BC]/50 focus:outline-none focus:border-white/[0.25] transition-colors"
+            className="w-full bg-transparent border border-input py-3.5 pl-11 pr-10 text-[14px] text-foreground placeholder:text-muted-foreground/80 focus:outline-none focus:border-input transition-colors"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#A8B0BC]/50 hover:text-[#A8B0BC] transition-colors text-[13px]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/80 hover:text-muted-foreground transition-colors text-[13px]"
             >
               Clear
             </button>
@@ -780,14 +780,14 @@ export default function HargaPage() {
             <Link
               key={i}
               href={`#cat-${i}`}
-              className="px-3 py-1.5 text-[12px] text-[#A8B0BC]/50 hover:text-[#A8B0BC] transition-colors border border-white/[0.06] hover:border-white/[0.12]"
+              className="px-3 py-1.5 text-[12px] text-muted-foreground/80 hover:text-muted-foreground transition-colors border border-border hover:border-foreground/30"
             >
               {cat.title}
             </Link>
           ))}
         </div>
 
-        <div className="border-t border-white/[0.06]">
+        <div className="border-t border-border">
           {filteredCategories.map((category, catIndex) => (
             <CategoryCard
               key={catIndex}
@@ -801,13 +801,13 @@ export default function HargaPage() {
 
         {filteredCategories.length === 0 && searchQuery && (
           <div className="text-center py-20">
-            <Search className="w-8 h-8 text-[#A8B0BC]/30 mx-auto mb-4" />
-            <p className="text-[#A8B0BC] text-[15px] font-medium">
+            <Search className="w-8 h-8 text-muted-foreground/80 mx-auto mb-4" />
+            <p className="text-muted-foreground text-[15px] font-medium">
               Tidak ada layanan yang cocok dengan &ldquo;{searchQuery}&rdquo;
             </p>
             <button
               onClick={() => setSearchQuery("")}
-              className="mt-4 text-[#A8B0BC]/50 hover:text-[#A8B0BC] text-[13px] font-medium transition-colors"
+              className="mt-4 text-muted-foreground/80 hover:text-muted-foreground text-[13px] font-medium transition-colors"
             >
               Reset pencarian
             </button>
@@ -816,16 +816,16 @@ export default function HargaPage() {
       </section>
 
       {/* PAKET BUNDLING */}
-      <section className="px-8 py-24 border-t border-white/[0.06]">
+      <section className="px-8 py-24 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Paket Hemat
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-3">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-3">
               Paket Bundling Spesial
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-md">
+            <p className="text-[15px] text-muted-foreground max-w-md">
               Dapatkan harga lebih hemat dengan paket bundling layanan kami.
             </p>
           </div>
@@ -841,34 +841,34 @@ export default function HargaPage() {
       {/* BIAYA TAMBAHAN */}
       <section className="px-8 py-24 max-w-3xl mx-auto">
         <div className="mb-14">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+          <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
             Informasi Tambahan
           </span>
-          <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-3">
+          <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-3">
             Biaya & Ketentuan
           </h2>
-          <p className="text-[15px] text-[#A8B0BC] max-w-md">
+          <p className="text-[15px] text-muted-foreground max-w-md">
             Informasi lengkap mengenai biaya tambahan dan ketentuan layanan.
           </p>
         </div>
 
-        <div className="border-t border-white/[0.06]">
+        <div className="border-t border-border">
           {extraFees.map((fee, i) => (
             <div
               key={i}
-              className="flex items-center justify-between py-4 border-b border-white/[0.06] last:border-b-0 hover:bg-white/[0.01] transition-colors"
+              className="flex items-center justify-between py-4 border-b border-border last:border-b-0 hover:bg-muted transition-colors"
             >
               <div className="pr-4">
-                <p className="text-[14px] font-medium text-white">
+                <p className="text-[14px] font-medium text-foreground">
                   {fee.service}
                 </p>
-                <p className="text-[12px] text-[#A8B0BC]/50 mt-0.5">
+                <p className="text-[12px] text-muted-foreground/80 mt-0.5">
                   {fee.note}
                 </p>
               </div>
               <span
                 className={`text-[14px] font-medium tabular-nums shrink-0 ${
-                  fee.fee === "Gratis" ? "text-[#1C69D4]" : "text-white"
+                  fee.fee === "Gratis" ? "text-primary" : "text-foreground"
                 }`}
               >
                 {fee.fee}
@@ -877,14 +877,14 @@ export default function HargaPage() {
           ))}
         </div>
 
-        <div className="mt-10 p-5 border border-white/[0.06] bg-[#141619]">
+        <div className="mt-10 p-5 border border-border bg-card">
           <div className="flex items-start gap-3">
-            <Info className="w-4 h-4 text-[#A8B0BC]/50 mt-0.5 shrink-0" />
+            <Info className="w-4 h-4 text-muted-foreground/80 mt-0.5 shrink-0" />
             <div>
-              <p className="text-[13px] font-medium text-white mb-1">
+              <p className="text-[13px] font-medium text-foreground mb-1">
                 Catatan Penting
               </p>
-              <p className="text-[12px] text-[#A8B0BC]/50 leading-relaxed">
+              <p className="text-[12px] text-muted-foreground/80 leading-relaxed">
                 Harga dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih
                 dahulu. Harga final akan dikonfirmasi setelah diagnosa dan
                 konsultasi dengan teknisi kami. Semua harga sudah termasuk PPN.
@@ -897,16 +897,16 @@ export default function HargaPage() {
       </section>
 
       {/* KENAPA PILIH KAMI */}
-      <section className="px-8 py-24 border-t border-white/[0.06]">
+      <section className="px-8 py-24 border-t border-border">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+            <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
               Kenapa Kami
             </span>
-            <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-3 mb-3">
+            <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-3 mb-3">
               Kenapa Pilih Kami?
             </h2>
-            <p className="text-[15px] text-[#A8B0BC] max-w-md">
+            <p className="text-[15px] text-muted-foreground max-w-md">
               Harga bersaing dengan kualitas servis yang terjamin.
             </p>
           </div>
@@ -941,14 +941,14 @@ export default function HargaPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
               >
-                <div className="bg-[#141619] border border-white/[0.06] p-8 h-full hover:border-white/[0.12] transition-colors">
-                  <div className="w-10 h-10 flex items-center justify-center text-[#A8B0BC] mb-6">
+                <div className="bg-card border border-border p-8 h-full hover:border-foreground/30 transition-colors">
+                  <div className="w-10 h-10 flex items-center justify-center text-muted-foreground mb-6">
                     {item.icon}
                   </div>
-                  <h3 className="text-[16px] font-semibold text-white mb-2">
+                  <h3 className="text-[16px] font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-[13px] text-[#A8B0BC] leading-relaxed">
+                  <p className="text-[13px] text-muted-foreground leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -961,13 +961,13 @@ export default function HargaPage() {
       {/* CTA */}
       <section className="px-8 py-32 text-center relative">
         <div className="max-w-2xl mx-auto">
-          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#A8B0BC]/50">
+          <span className=" uppercase text-[11px] tracking-wider font-medium text-muted-foreground/80">
             Gratis Konsultasi
           </span>
-          <h2 className="text-[38px] md:text-[48px] font-bold tracking-[-0.02em] text-white mt-4 mb-4">
+          <h2 className=" font-bold leading-[1.1] text-[2rem] md:text-[2.75rem] text-foreground mt-4 mb-4">
             Siap Servis Komputer?
           </h2>
-          <p className="text-[15px] text-[#A8B0BC] max-w-lg mx-auto leading-relaxed mb-10">
+          <p className="text-[15px] text-muted-foreground max-w-lg mx-auto leading-relaxed mb-10">
             Tanya harga dulu aja gratis! Ceritakan kebutuhan Anda, kami akan
             kasih solusi dan harga terbaik.
           </p>
@@ -976,15 +976,15 @@ export default function HargaPage() {
               href="https://wa.me/6281281916880?text=Halo%20Prisma%20Komputer%2C%20saya%20mau%20tanya%20harga%20servis"
               target="_blank"
             >
-              <span className="inline-flex items-center justify-center bg-[#1C69D4] text-white hover:bg-[#1C69D4]/90 font-medium px-10 py-7 text-[15px] rounded-lg">
+              <span className="inline-flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-10 py-7 text-[15px] rounded-md">
                 <MessageCircle className="mr-2 w-4 h-4" />
                 Klik Disini WhatsApp
                 <ArrowRight className="ml-2 w-4 h-4" />
               </span>
             </Link>
-            <p className="text-[13px] text-[#A8B0BC]/50">
+            <p className="text-[13px] text-muted-foreground/80">
               atau hubungi{" "}
-              <span className="text-white font-medium">0812-8191-6880</span>
+              <span className="text-foreground font-medium">0812-8191-6880</span>
             </p>
           </div>
         </div>

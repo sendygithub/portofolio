@@ -142,7 +142,7 @@ export function NotesApp({ initialData }: { initialData: NotesInitialData }) {
           <Button
             variant="outline"
             size="icon"
-            className="fixed left-4 top-4 z-30"
+            className="fixed left-4 top-4 z-30 bg-card"
           >
             <Menu />
           </Button>
@@ -168,9 +168,9 @@ export function NotesApp({ initialData }: { initialData: NotesInitialData }) {
 
       <main className="relative z-10 flex min-w-0 flex-1 flex-col">
         {error && (
-          <div className="absolute right-4 top-4 z-50 flex items-center gap-2 rounded-md border border-destructive bg-destructive px-4 py-2.5 text-sm text-destructive-foreground shadow-lg">
+          <div className="absolute right-4 top-4 z-50 flex items-center gap-2 border border-destructive bg-destructive px-4 py-2.5  text-[11px] uppercase tracking-wider text-destructive-foreground">
             <AlertCircle className="h-4 w-4 shrink-0" />
-            <span className="font-medium">{error}</span>
+            <span>{error}</span>
             <button
               onClick={() => setError("")}
               className="ml-1 opacity-70 transition-opacity hover:opacity-100"
@@ -181,15 +181,15 @@ export function NotesApp({ initialData }: { initialData: NotesInitialData }) {
         )}
 
         {selectedCategory && (
-          <div className="flex h-14 shrink-0 items-center gap-3 border-b px-4 md:px-6">
+          <div className="flex h-16 shrink-0 items-center gap-3 border-b border-border px-4 md:px-6">
             <div className="relative flex-1 max-w-md">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/80" />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Cari catatan..."
-                className="h-9 w-full rounded-md border border-input bg-transparent pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground outline-none transition-colors focus:border-foreground"
+                className="h-9 w-full border border-input bg-transparent pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground/80 outline-none transition-colors duration-200 focus:border-primary"
               />
             </div>
             <ThemeToggle />

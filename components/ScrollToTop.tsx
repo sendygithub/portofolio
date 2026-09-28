@@ -22,7 +22,7 @@ const ScrollToTop = () => {
   return (
     <Link href={"#home"} className="fixed bottom-10 right-10">
       <span
-        className={`text-tertiary hover:text-tertiary/80 transition-colors text-4xl font-display ${
+        className={`text-primary hover:text-foreground transition-colors text-4xl  ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >

@@ -7,21 +7,17 @@ import { layanan, tautanWhatsApp } from "../lib/portfolio";
 export default function Layanan() {
   return (
     <section id="layanan" className="py-24 px-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mb-14 border-b border-secondary/20 pb-6"
+          className="section-header"
         >
-          <p className="font-label uppercase tracking-widest text-xs text-tertiary mb-3">
-            01 — Layanan
-          </p>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-3">
-            Servis komputer & laptop
-          </h2>
-          <p className="text-primary/70 font-body max-w-2xl">
+          <p className="section-label">01 — Layanan</p>
+          <h2 className="section-title">Servis komputer & laptop</h2>
+          <p className="section-desc">
             Dikerjakan sendiri sejak 2013 untuk teman dan rekan kerja di
             Tangerang. Diagnosa dulu, baru diperbaiki — bukan langsung instal
             ulang.
@@ -36,18 +32,18 @@ export default function Layanan() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
-              className="border-t border-secondary/20 pt-6"
+              className="border-t border-border pt-6 group"
             >
-              <p className="font-display font-bold text-tertiary text-lg mb-2">
+              <p className="numbered-label text-lg mb-2">
                 {item.nomor}
               </p>
-              <h3 className="text-xl font-display font-bold text-primary mb-2">
+              <h3 className="text-xl  font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
                 {item.judul}
               </h3>
-              <p className="text-primary/70 font-body text-sm leading-relaxed mb-4">
+              <p className="text-muted-foreground font-body text-sm leading-relaxed mb-4">
                 {item.deskripsi}
               </p>
-              <p className="text-secondary font-body text-sm">
+              <p className="text-muted-foreground/80 font-body text-sm">
                 {item.poin.join(" · ")}
               </p>
             </motion.div>
@@ -61,14 +57,14 @@ export default function Layanan() {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="flex flex-col sm:flex-row gap-4"
         >
-          <Link href="/servis" className="btn-primary hover:opacity-90 transition-opacity">
+          <Link href="/servis" className="btn-accent">
             Lihat layanan lengkap
           </Link>
           <a
             href={tautanWhatsApp("Halo Sendy, saya mau tanya soal servis komputer/laptop.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3 border-2 border-secondary/40 text-secondary font-label uppercase tracking-widest text-xs rounded-md hover:border-tertiary hover:text-tertiary transition-all duration-300 inline-block cursor-pointer"
+            className="btn-outline"
           >
             Tanya lewat WhatsApp
           </a>

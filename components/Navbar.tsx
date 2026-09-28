@@ -1,77 +1,126 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { tautanWhatsApp } from "../lib/portfolio";
+import { Menu } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { tautanWhatsApp } from "@/lib/portfolio";
+import { cn } from "@/lib/utils";
+
+const navItems = [
+  { name: "Layanan", href: "#layanan" },
+  { name: "Keahlian", href: "#skills" },
+  { name: "Proyek", href: "#projects" },
+  { name: "Pengalaman", href: "#experience" },
+  { name: "Kontak", href: "#contact" },
+];
+
+const pesanWhatsApp =
+  "Halo Sendy, saya mau tanya soal dukungan/servis komputer.";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Layanan", href: "#layanan" },
-    { name: "Keahlian", href: "#skills" },
-    { name: "Proyek", href: "#projects" },
-    { name: "Pengalaman", href: "#experience" },
-    { name: "Kontak", href: "#contact" },
-  ];
-
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 w-full border-b transition-colors",
         scrolled
-          ? "bg-neutral/90 backdrop-blur-md border-b border-secondary/20"
-          : "bg-transparent"
-      }`}
+          ? "border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+          : "border-transparent bg-transparent"
+      )}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-display font-bold text-primary tracking-wider">
-            Sendy<span className="text-tertiary">.</span>
-          </Link>
+      <div className="container flex h-16 items-center justify-between">
+        <Link
+          href="/"
+          className="text-lg font-semibold tracking-tight transition-colors hover:text-muted-foreground"
+        >
+          Sendy
+          <span className="text-muted-foreground">.</span>
+        </Link>
 
-          <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.1, color: "#C96F2E" }}
-                className="text-primary hover:text-tertiary transition-colors duration-200 font-bold uppercase tracking-widest text-sm"
+        <nav className="hidden items-center gap-6 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.name}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <Button asChild size="sm" className="hidden sm:inline-flex">
+            <a
+              href={tautanWhatsApp(pesanWhatsApp)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp
+            </a>
+          </Button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="md:hidden"
+                aria-label="Buka menu"
               >
-                {item.name}
-              </motion.a>
-            ))}
-          </div>
-
-          <motion.a
-            href={tautanWhatsApp("Halo Sendy, saya mau tanya soal dukungan/servis komputer.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary font-bold"
-          >
-            WhatsApp
-          </motion.a>
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72">
+              <SheetHeader className="text-left">
+                <SheetTitle className="text-base">Navigasi</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-6 flex flex-col">
+                {navItems.map((item) => (
+                  <SheetClose asChild key={item.name}>
+                    <a
+                      href={item.href}
+                      className="border-b border-border py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {item.name}
+                    </a>
+                  </SheetClose>
+                ))}
+                <SheetClose asChild>
+                  <Button asChild className="mt-6 w-full">
+                    <a
+                      href={tautanWhatsApp(pesanWhatsApp)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      WhatsApp
+                    </a>
+                  </Button>
+                </SheetClose>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </motion.nav>
+    </header>
   );
 }
 

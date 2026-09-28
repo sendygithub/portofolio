@@ -3,6 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { Download, MessageCircle } from "lucide-react";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   faktaSingkat,
   FILE_CV,
@@ -10,169 +16,108 @@ import {
   NAMA,
   POSISI_DICARI,
   tautanWhatsApp,
-} from "../lib/portfolio";
+} from "@/lib/portfolio";
 
 export function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16"
+      className="flex min-h-screen items-center justify-center px-6 pb-20 pt-28"
     >
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="max-w-5xl mx-auto text-center"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="mx-auto max-w-4xl text-center"
       >
+        {/* Foto profil — bulat */}
         <motion.div
-          variants={itemVariants}
-          className="flex flex-col items-center justify-center"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-8 flex justify-center"
         >
-          {/* FOTO */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-            }}
-            whileHover={{ scale: 1.05 }}
-            className="
-              relative
-              mb-4
-              rounded-full
-              overflow-hidden
-              ring-2 ring-secondary/40
-              hover:ring-tertiary
-              transition-all
-              duration-300
-              shadow-lg
-              hover:shadow-[0_0_30px_rgba(201,111,46,0.4)]
-              mt-20
-            "
-          >
+          <div className="relative h-40 w-40 overflow-hidden rounded-full border border-border bg-muted shadow-sm sm:h-48 sm:w-48 md:h-56 md:w-56">
             <Image
               src="/sendy.png"
               alt={NAMA}
-              width={500}
-              height={500}
-              className="
-                rounded-full
-                object-cover
-                w-500 h-45
-                sm:w-36 sm:h-36
-                md:w-44 md:h-44
-                lg:w-80 lg:h-80
-              "
+              fill
+              priority
+              sizes="(max-width: 640px) 10rem, (max-width: 768px) 12rem, 14rem"
+              className="object-cover"
             />
-          </motion.div>
-
-          {/* NAMA */}
-          <motion.span
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.4 }}
-            className="text-sm sm:text-base text-3xl md:text-4xl lg:text-2xl font-display font-bold mb-5 mt-5 text-secondary uppercase tracking-widest"
-          >
-            {NAMA} {GELAR}
-          </motion.span>
+          </div>
         </motion.div>
 
-        <motion.h1
-          variants={itemVariants}
-          className="
-            font-display font-bold mb-6 leading-tight
-            text-4xl sm:text-5xl lg:text-display
-          "
-        >
-          <span className="text-tertiary">IT Support</span>
+        <Badge variant="secondary" className="mb-6 py-1 text-xs font-medium">
+          {NAMA} · {GELAR}
+        </Badge>
 
-          <span className="block lg:inline text-primary lg:ml-3">
-            Komputer, Laptop
-          </span>
+        <h1 className="mb-6 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+          IT Support
+          <span className="block text-muted-foreground">Komputer, Laptop</span>
+          <span className="block text-muted-foreground">dan Jaringan</span>
+        </h1>
 
-          <span className="block lg:inline text-primary lg:ml-3">
-            dan Jaringan
-          </span>
-        </motion.h1>
-
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl text-primary/70 max-w-2xl mx-auto mb-8 leading-relaxed font-body"
-        >
+        <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
           Servis dan dukungan IT sejak 2013 di Tangerang. 13 tahun terbiasa
           bekerja sistem shift 1/2/3 di lini produksi, jadi siap mendukung
           operasional IT yang berjalan non-stop. Terbuka untuk posisi{" "}
-          <span className="text-primary">{POSISI_DICARI}</span>.
-        </motion.p>
+          <span className="font-medium text-foreground">{POSISI_DICARI}</span>.
+        </p>
 
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
-          <Link href="/servis" className="btn-primary hover:opacity-90 transition-opacity">
-            Lihat Layanan Servis
-          </Link>
-          <a
-            href={FILE_CV}
-            download
-            className="px-5 py-3 border-2 border-tertiary text-tertiary font-label uppercase tracking-widest text-xs rounded-md hover:bg-tertiary hover:text-on-primary transition-all duration-300 inline-block cursor-pointer"
+        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="w-full sm:w-auto">
+            <Link href="/servis">Lihat Layanan Servis</Link>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto"
           >
-            Unduh CV (PDF)
-          </a>
-          <a
-            href={tautanWhatsApp(
-              "Halo Sendy, saya mau tanya soal dukungan/servis komputer."
-            )}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-3 border-2 border-secondary/40 text-secondary font-label uppercase tracking-widest text-xs rounded-md hover:border-tertiary hover:text-tertiary transition-all duration-300 inline-block cursor-pointer"
+            <a href={FILE_CV} download>
+              <Download />
+              Unduh CV (PDF)
+            </a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto"
           >
-            WhatsApp
-          </a>
-        </motion.div>
+            <a
+              href={tautanWhatsApp(
+                "Halo Sendy, saya mau tanya soal dukungan/servis komputer.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle />
+              WhatsApp
+            </a>
+          </Button>
+        </div>
 
         {/* FAKTA SINGKAT */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-secondary/15 border border-secondary/15"
-        >
+        <Separator className="my-14" />
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {faktaSingkat.map((fakta) => (
-            <div key={fakta.label} className="bg-neutral px-4 py-6 text-center">
-              <p className="font-display font-bold text-primary text-lg md:text-xl">
+            <Card key={fakta.label} className="p-6 text-center">
+              <p className="text-2xl font-semibold tabular-nums md:text-3xl">
                 {fakta.nilai}
               </p>
-              <p className="font-label uppercase tracking-widest text-[0.65rem] text-secondary mt-1">
+              <p className="mt-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 {fakta.label}
               </p>
-            </div>
+            </Card>
           ))}
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
 }
+
 export default Hero;

@@ -8,7 +8,6 @@ import { notesApi } from "@/lib/notes-api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function LoginForm() {
   const router = useRouter();
@@ -32,77 +31,73 @@ export function LoginForm() {
   }
 
   return (
-    <main className="notes-theme flex min-h-screen items-center justify-center bg-background px-4">
-      <Card className="w-full max-w-sm border-border bg-card">
-        <CardHeader className="space-y-1.5">
-          <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-            Private
-          </p>
-          <CardTitle className="text-2xl font-semibold tracking-tight">
-            Catatan
-          </CardTitle>
-          <CardDescription>
+    <main className="notes-theme flex min-h-screen items-center justify-center bg-background px-6 py-16">
+      <div className="w-full max-w-sm border border-border bg-card p-8">
+        <div className="border-b border-border pb-5">
+          <p className="eyebrow-accent">Private</p>
+          <h1 className="display-2 mt-2">Catatan</h1>
+          <p className="body-sm mt-2">
             Masuk untuk membuka catatan pribadimu.
-          </CardDescription>
-        </CardHeader>
+          </p>
+        </div>
 
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="username" className="text-xs">Username</Label>
-              <Input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
-                autoComplete="username"
-                required
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-5 pt-6">
+          <div>
+            <Label htmlFor="username" className="label-elegant">
+              Username
+            </Label>
+            <Input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="admin"
+              autoComplete="username"
+              className="h-11"
+              required
+            />
+          </div>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="password" className="text-xs">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••"
-                autoComplete="current-password"
-                required
-              />
-            </div>
+          <div>
+            <Label htmlFor="password" className="label-elegant">
+              Password
+            </Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••"
+              autoComplete="current-password"
+              className="h-11"
+              required
+            />
+          </div>
 
-            {error && (
-              <p className="text-xs text-destructive">{error}</p>
-            )}
+          {error && (
+            <p className="border-l-2 border-destructive pl-3 font-body text-[13px] text-destructive">
+              {error}
+            </p>
+          )}
 
-            <Button
-              type="submit"
-              disabled={loading}
-              className="w-full"
-            >
-              <LogIn className="h-4 w-4" />
-              {loading ? "Memproses..." : "Masuk"}
-            </Button>
-          </form>
-        </CardContent>
+          <Button type="submit" disabled={loading} className="h-11 w-full">
+            <LogIn className="h-4 w-4" />
+            {loading ? "Memproses..." : "Masuk"}
+          </Button>
+        </form>
 
-        <CardFooter className="flex flex-col gap-3">
-          <p className="text-center text-xs text-muted-foreground">
-            Demo: <span className="font-medium text-foreground">admin</span> / <span className="font-medium text-foreground">123</span>
+        <div className="mt-6 flex flex-col items-center gap-4 border-t border-border pt-5">
+          <p className="eyebrow text-center">
+            Demo: <span className="text-foreground">admin</span> /{" "}
+            <span className="text-foreground">123</span>
           </p>
 
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
+          <Link href="/" className="link-plain justify-center">
             <ArrowLeft className="h-3 w-3" />
             Kembali ke beranda
           </Link>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </main>
   );
 }

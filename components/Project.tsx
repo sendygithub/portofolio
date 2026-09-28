@@ -4,29 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { projectImages } from "../lib/projectImages";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
 const cardVariants = {
   rest: { scale: 1 },
   hover: {
@@ -42,10 +19,10 @@ const Project = () => {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-primary">
+            <h2 className="text-4xl md:text-6xl  font-bold mb-4 text-foreground">
               Featured Projects
             </h2>
-            <p className="text-secondary font-body">
+            <p className="text-muted-foreground font-body">
               A curation of my best work in HRIS, E-commerce, and Corporate
               solutions.
             </p>
@@ -96,9 +73,9 @@ const Project = () => {
               variants={cardVariants}
               initial="rest"
               whileHover="hover"
-              className="card border border-secondary/10 overflow-hidden group"
+              className="card border border-border overflow-hidden group"
             >
-              <div className="h-56 bg-surface relative">
+              <div className="h-56 bg-muted relative">
                 <Image
                   src={
                     projectImages[`Proyek${proj.id <= 5 ? proj.id : 1}`] ??
@@ -108,12 +85,12 @@ const Project = () => {
                   fill
                   className="object-cover opacity-50 group-hover:opacity-80 transition-opacity"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-neutral to-transparent">
+                <div className="absolute inset-x-0 bottom-0 bg-background/90 p-6">
                   <div className="flex gap-2">
                     {proj.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] px-2 py-1 bg-tertiary/20 text-tertiary border border-tertiary/30 font-label uppercase tracking-widest"
+                        className="text-[10px] px-2 py-1 bg-accent text-primary border border-primary  uppercase tracking-wider"
                       >
                         {t}
                       </span>
@@ -122,15 +99,15 @@ const Project = () => {
                 </div>
               </div>
               <div className="p-8">
-                <h3 className="text-2xl font-display font-bold mb-3 text-primary">
+                <h3 className="text-2xl  font-bold mb-3 text-foreground">
                   {proj.title}
                 </h3>
-                <p className="text-primary/70 text-sm mb-6 line-clamp-2 font-body">
+                <p className="text-muted-foreground text-sm mb-6 line-clamp-2 font-body">
                   {proj.desc}
                 </p>
                 <Link
                   href="#"
-                  className="inline-flex items-center text-tertiary font-label uppercase tracking-widest text-xs group-hover:gap-3 transition-all"
+                  className="inline-flex items-center text-primary  uppercase tracking-wider text-xs group-hover:gap-3 transition-all"
                 >
                   Case Study <span className="ml-1">→</span>
                 </Link>

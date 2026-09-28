@@ -49,9 +49,14 @@ export function Sidebar({
   }
 
   return (
-    <aside className="flex h-full w-72 shrink-0 flex-col border-r bg-background">
-      <div className="flex h-14 items-center justify-between border-b px-5">
-        <h1 className="text-sm font-semibold tracking-tight">Catatan</h1>
+    <aside className="flex h-full w-72 shrink-0 flex-col border-r border-border bg-muted">
+      <div className="flex h-16 items-center justify-between border-b border-border px-5">
+        <div className="min-w-0">
+          <p className="eyebrow-accent">Arsip</p>
+          <h1 className="truncate  text-[15px] font-bold uppercase leading-tight tracking-wide">
+            Catatan
+          </h1>
+        </div>
         <Button
           onClick={onToggleEdit}
           variant="ghost"
@@ -64,24 +69,23 @@ export function Sidebar({
       </div>
 
       <ScrollArea className="flex-1">
-        <div className="px-2 py-3">
-          <p className="px-3 pb-1.5 text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-            Proyek
-          </p>
+        <div className="px-3 py-4">
+          <p className="eyebrow px-2 pb-3">Proyek</p>
 
           {categories.length === 0 && (
-            <p className="px-3 py-2 text-sm text-muted-foreground">
-              Belum ada kategori.
-            </p>
+            <p className="body-sm px-2 py-2">Belum ada kategori.</p>
           )}
 
-          <div className="space-y-0.5">
+          <div>
             {categories.map((category) => {
               const active = category.id === selectedId && !editMode;
               return (
-                <div key={category.id}>
+                <div
+                  key={category.id}
+                  className="border-b border-border"
+                >
                   {editMode ? (
-                    <div className="flex items-center gap-1 rounded-md px-1 py-1">
+                    <div className="flex items-center gap-1 border-l-2 border-transparent py-1.5 pl-1 pr-1.5">
                       <Input
                         value={drafts[category.id] ?? category.name}
                         onChange={(e) =>
@@ -107,7 +111,7 @@ export function Sidebar({
                         variant="ghost"
                         size="icon"
                         title="Hapus"
-                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                        className="h-8 w-8 hover:text-destructive"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </Button>
@@ -115,19 +119,19 @@ export function Sidebar({
                   ) : (
                     <button
                       onClick={() => onSelect(category.id)}
-                      className={`flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left text-sm transition-colors ${
+                      className={`flex w-full items-center justify-between gap-3 border-l-2 py-3 pl-3 pr-2 text-left text-sm transition-all duration-300 ${
                         active
-                          ? "bg-secondary text-secondary-foreground"
-                          : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
+                          ? "border-primary bg-card text-foreground"
+                          : "border-transparent text-muted-foreground hover:translate-x-1 hover:text-primary"
                       }`}
                     >
                       <span className="truncate">{category.name}</span>
                       <span
-                        className={`shrink-0 text-xs tabular-nums ${
-                          active ? "text-foreground/70" : "text-muted-foreground/70"
+                        className={`shrink-0  text-[11px] font-medium tabular-nums ${
+                          active ? "text-primary" : "text-muted-foreground/80"
                         }`}
                       >
-                        {category._count.notes}
+                        {String(category._count.notes).padStart(2, "0")}
                       </span>
                     </button>
                   )}
@@ -139,7 +143,7 @@ export function Sidebar({
       </ScrollArea>
 
       {editMode && (
-        <div className="space-y-2 border-t p-3">
+        <div className="border-t border-border p-3">
           <div className="flex items-center gap-2">
             <Input
               value={newName}
@@ -160,19 +164,21 @@ export function Sidebar({
         </div>
       )}
 
-      <div className="flex h-14 items-center justify-between border-t px-5">
-        <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] font-semibold uppercase">
+      <div className="flex h-16 items-center justify-between border-t border-border px-5">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center border border-input  text-[11px] font-bold uppercase text-primary">
             {username.charAt(0)}
           </div>
-          <span className="truncate text-sm text-foreground">{username}</span>
+          <span className="truncate  text-[11px] uppercase tracking-wider text-muted-foreground">
+            {username}
+          </span>
         </div>
         <Button
           onClick={onLogout}
           variant="ghost"
           size="icon"
           title="Keluar"
-          className="h-8 w-8 text-muted-foreground hover:text-foreground"
+          className="h-8 w-8"
         >
           <LogOut className="h-4 w-4" />
         </Button>

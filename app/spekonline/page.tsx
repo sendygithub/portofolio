@@ -185,14 +185,14 @@ export default function SpekOnlinePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-          <h1 className="text-2xl font-bold text-gray-800">Spek Online</h1>
+          <h1 className="text-2xl font-bold text-foreground">Spek Online</h1>
           <button
             onClick={openAddModal}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors flex items-center gap-2 text-sm"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors flex items-center gap-2 text-sm"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +213,7 @@ export default function SpekOnlinePage() {
         </div>
 
         {/* Search */}
-        <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+        <div className="bg-card border border-border p-4 mb-6">
           <div className="flex gap-2">
             <input
               type="text"
@@ -221,12 +221,12 @@ export default function SpekOnlinePage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyDown={handleSearchKeyDown}
               placeholder="Cari data APB, No Spek, Sudut, Lebar, Toleransi..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+              className="flex-1 px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
             />
             <button
               onClick={handleSearch}
               disabled={searchLoading}
-              className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors flex items-center gap-2"
+              className="px-5 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 disabled:opacity-50 transition-colors flex items-center gap-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +250,7 @@ export default function SpekOnlinePage() {
                   setSearchTerm("");
                   fetchData();
                 }}
-                className="px-3 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition-colors text-sm"
+                className="px-3 py-2 bg-muted text-foreground rounded-md hover:bg-accent transition-colors text-sm"
               >
                 Reset
               </button>
@@ -259,30 +259,30 @@ export default function SpekOnlinePage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-card border border-border overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200">
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                <tr className="bg-muted">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     No
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     APB
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     No Spek
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     Sudut
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     Lebar
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-left text-sm font-semibold text-foreground">
                     Toleransi
                   </th>
-                  <th className="border border-gray-300 px-4 py-3 text-center text-sm font-semibold text-gray-700">
+                  <th className="border border-border px-4 py-3 text-center text-sm font-semibold text-foreground">
                     Aksi
                   </th>
                 </tr>
@@ -292,7 +292,7 @@ export default function SpekOnlinePage() {
                   <tr>
                     <td
                       colSpan={7}
-                      className="border border-gray-300 px-4 py-8 text-center text-gray-500"
+                      className="border border-border px-4 py-8 text-center text-muted-foreground"
                     >
                       Memuat data...
                     </td>
@@ -301,43 +301,43 @@ export default function SpekOnlinePage() {
                   <tr>
                     <td
                       colSpan={7}
-                      className="border border-gray-300 px-4 py-8 text-center text-gray-500"
+                      className="border border-border px-4 py-8 text-center text-muted-foreground"
                     >
                       {searchTerm ? "Data tidak ditemukan" : "Belum ada data"}
                     </td>
                   </tr>
                 ) : (
                   data.map((item, index) => (
-                    <tr key={item.id} className="hover:bg-gray-50">
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                    <tr key={item.id} className="hover:bg-muted">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {index + 1}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800 font-medium">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground font-medium">
                         {item.apb}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.noSpek}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.sudut}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.lebar}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-gray-800">
+                      <td className="border border-border px-4 py-2 text-sm text-foreground">
                         {item.toleransi}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-sm text-center">
+                      <td className="border border-border px-4 py-2 text-sm text-center">
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => openEditModal(item)}
-                            className="px-3 py-1 bg-yellow-500 text-white rounded text-xs hover:bg-yellow-600 transition-colors"
+                            className="px-3 py-1 bg-primary text-primary-foreground rounded text-xs hover:bg-primary/90 transition-colors"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => confirmDelete(item.id)}
-                            className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition-colors"
+                            className="px-3 py-1 bg-destructive text-destructive-foreground rounded text-xs hover:bg-destructive/90 transition-colors"
                           >
                             Hapus
                           </button>
@@ -350,7 +350,7 @@ export default function SpekOnlinePage() {
             </table>
           </div>
           {!loading && (
-            <div className="px-4 py-3 bg-gray-50 border-t border-gray-200 text-sm text-gray-600">
+            <div className="px-4 py-3 bg-muted border-t border-border text-sm text-muted-foreground">
               Total: {data.length} data
             </div>
           )}
@@ -359,15 +359,15 @@ export default function SpekOnlinePage() {
 
       {/* Modal Tambah/Edit */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <h2 className="text-lg font-semibold text-gray-800">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 p-4">
+          <div className="bg-card border border-border w-full max-w-md">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+              <h2 className="text-lg font-semibold text-foreground">
                 {modalMode === "add" ? "Tambah Data" : "Edit Data"}
               </h2>
               <button
                 onClick={closeModal}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-muted-foreground/80 hover:text-muted-foreground transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -387,8 +387,8 @@ export default function SpekOnlinePage() {
             </div>
             <div className="px-6 py-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  APB <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-foreground mb-1">
+                  APB <span className="text-destructive">*</span>
                 </label>
                 <input
                   type="text"
@@ -396,12 +396,12 @@ export default function SpekOnlinePage() {
                   value={formData.apb}
                   onChange={handleFormChange}
                   placeholder="Contoh: 0005/006"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  No Spek <span className="text-red-500">*</span>
+                <label className="block text-sm font-medium text-foreground mb-1">
+                  No Spek <span className="text-destructive">*</span>
                 </label>
                 <input
                   type="text"
@@ -409,11 +409,11 @@ export default function SpekOnlinePage() {
                   value={formData.noSpek}
                   onChange={handleFormChange}
                   placeholder="Contoh: PB 01-05"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Sudut
                 </label>
                 <input
@@ -422,11 +422,11 @@ export default function SpekOnlinePage() {
                   value={formData.sudut}
                   onChange={handleFormChange}
                   placeholder="Contoh: 63"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Lebar
                 </label>
                 <input
@@ -435,11 +435,11 @@ export default function SpekOnlinePage() {
                   value={formData.lebar}
                   onChange={handleFormChange}
                   placeholder="Contoh: 683"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-foreground mb-1">
                   Toleransi
                 </label>
                 <input
@@ -448,21 +448,21 @@ export default function SpekOnlinePage() {
                   value={formData.toleransi}
                   onChange={handleFormChange}
                   placeholder="Contoh: 5mm"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800"
+                  className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:border-primary text-foreground"
                 />
               </div>
             </div>
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 text-sm text-foreground bg-background rounded-md hover:bg-muted transition-colors"
               >
                 Batal
               </button>
               <button
                 onClick={handleSave}
                 disabled={saving}
-                className="px-4 py-2 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="px-4 py-2 text-sm text-primary-foreground bg-primary rounded-md hover:bg-primary/90 disabled:opacity-50 transition-colors"
               >
                 {saving ? "Menyimpan..." : "Simpan"}
               </button>
@@ -473,14 +473,14 @@ export default function SpekOnlinePage() {
 
       {/* Modal Konfirmasi Hapus */}
       {deleteId !== null && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 p-4">
+          <div className="bg-card border border-border w-full max-w-sm">
             <div className="px-6 py-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-10 h-10 bg-accent flex items-center justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-red-600"
+                    className="h-5 w-5 text-destructive"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -494,27 +494,27 @@ export default function SpekOnlinePage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-foreground">
                     Konfirmasi Hapus
                   </h3>
-                  <p className="text-sm text-gray-600 mt-1">
+                  <p className="text-sm text-muted-foreground mt-1">
                     Apakah Anda yakin ingin menghapus data ini? Tindakan ini
                     tidak dapat dibatalkan.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
               <button
                 onClick={cancelDelete}
-                className="px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 text-sm text-foreground bg-background rounded-md hover:bg-muted transition-colors"
               >
                 Batal
               </button>
               <button
                 onClick={handleDelete}
                 disabled={deleting}
-                className="px-4 py-2 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 disabled:opacity-50 transition-colors"
+                className="px-4 py-2 text-sm text-destructive-foreground bg-destructive rounded-md hover:bg-destructive/90 disabled:opacity-50 transition-colors"
               >
                 {deleting ? "Menghapus..." : "Hapus"}
               </button>
