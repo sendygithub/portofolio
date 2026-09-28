@@ -20,8 +20,8 @@ export function Navbar() {
 
   const navItems = [
     { name: "Layanan", href: "#layanan" },
-    { name: "Proyek", href: "#projects" },
     { name: "Keahlian", href: "#skills" },
+    { name: "Proyek", href: "#projects" },
     { name: "Pengalaman", href: "#experience" },
     { name: "Kontak", href: "#contact" },
   ];
