@@ -2,6 +2,15 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import {
+  faktaSingkat,
+  FILE_CV,
+  GELAR,
+  NAMA,
+  POSISI_DICARI,
+  tautanWhatsApp,
+} from "../lib/portfolio";
 
 export function Hero() {
   const containerVariants = {
@@ -30,13 +39,13 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 pt-20"
+      className="min-h-screen flex items-center justify-center px-6 pt-20 pb-16"
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-7xl mx-auto text-center"
+        className="max-w-5xl mx-auto text-center"
       >
         <motion.div
           variants={itemVariants}
@@ -67,7 +76,7 @@ export function Hero() {
           >
             <Image
               src="/sendy.png"
-              alt="Sendy Andreansah"
+              alt={NAMA}
               width={500}
               height={500}
               className="
@@ -88,7 +97,7 @@ export function Hero() {
             transition={{ delay: 0.2, duration: 0.4 }}
             className="text-sm sm:text-base text-3xl md:text-4xl lg:text-2xl font-display font-bold mb-5 mt-5 text-secondary uppercase tracking-widest"
           >
-            Sendy Andreansah S.Kom
+            {NAMA} {GELAR}
           </motion.span>
         </motion.div>
 
@@ -99,61 +108,68 @@ export function Hero() {
             text-4xl sm:text-5xl lg:text-display
           "
         >
-          <span className="text-primary">Junior Developer</span>
+          <span className="text-tertiary">IT Support</span>
 
           <span className="block lg:inline text-primary lg:ml-3">
-            Building Digital
+            Komputer, Laptop
           </span>
 
-          <span className="block lg:inline text-tertiary lg:ml-3">
-            Experiences
+          <span className="block lg:inline text-primary lg:ml-3">
+            dan Jaringan
           </span>
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-primary/70 max-w-2xl mx-auto mb-12 leading-relaxed font-body"
+          className="text-lg md:text-xl text-primary/70 max-w-2xl mx-auto mb-8 leading-relaxed font-body"
         >
-          I craft beautiful and functional web applications with modern
-          technologies. Passionate about creating digital solutions that make a
-          difference.
+          Servis dan dukungan IT sejak 2013 di Tangerang. 13 tahun terbiasa
+          bekerja sistem shift 1/2/3 di lini produksi, jadi siap mendukung
+          operasional IT yang berjalan non-stop. Terbuka untuk posisi{" "}
+          <span className="text-primary">{POSISI_DICARI}</span>.
         </motion.p>
 
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <motion.a
-            href="https://prisma-komputer.vercel.app"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="btn-primary"
-          >
-            View My Work
-          </motion.a>
-          <motion.a
-            href="/RESUME.pdf"
+          <Link href="/servis" className="btn-primary hover:opacity-90 transition-opacity">
+            Lihat Layanan Servis
+          </Link>
+          <a
+            href={FILE_CV}
             download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             className="px-5 py-3 border-2 border-tertiary text-tertiary font-label uppercase tracking-widest text-xs rounded-md hover:bg-tertiary hover:text-on-primary transition-all duration-300 inline-block cursor-pointer"
           >
-            Download CV
-          </motion.a>
+            Unduh CV (PDF)
+          </a>
+          <a
+            href={tautanWhatsApp(
+              "Halo Sendy, saya mau tanya soal dukungan/servis komputer."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-3 border-2 border-secondary/40 text-secondary font-label uppercase tracking-widest text-xs rounded-md hover:border-tertiary hover:text-tertiary transition-all duration-300 inline-block cursor-pointer"
+          >
+            WhatsApp
+          </a>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="mt-20">
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-6 h-10 border-2 border-secondary/30 rounded-md mx-auto flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1.5 h-3 bg-tertiary rounded-sm mt-2"
-            />
-          </motion.div>
+        {/* FAKTA SINGKAT */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-px bg-secondary/15 border border-secondary/15"
+        >
+          {faktaSingkat.map((fakta) => (
+            <div key={fakta.label} className="bg-neutral px-4 py-6 text-center">
+              <p className="font-display font-bold text-primary text-lg md:text-xl">
+                {fakta.nilai}
+              </p>
+              <p className="font-label uppercase tracking-widest text-[0.65rem] text-secondary mt-1">
+                {fakta.label}
+              </p>
+            </div>
+          ))}
         </motion.div>
       </motion.div>
     </section>

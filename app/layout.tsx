@@ -6,9 +6,28 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Sendy Andreansah | Denim Workwear Portfolio",
+  title:
+    "Sendy Andreansah — IT Support, Servis Komputer & Laptop | Tangerang",
   description:
-    "Heritage workwear: selvedge indigo, rivet copper. Junior Developer building digital experiences.",
+    "IT Support dan servis komputer/laptop sejak 2013 di Tangerang. Perbaikan hardware, instalasi Windows & Linux, upgrade RAM/SSD, jaringan LAN, dan printer. 13 tahun terbiasa kerja sistem shift 1/2/3. S1 Sistem Informasi.",
+  keywords: [
+    "IT Support Tangerang",
+    "servis komputer Tangerang",
+    "servis laptop Tangerang",
+    "IT Administrator",
+    "Helpdesk",
+    "Desktop Support",
+    "IT Technician",
+    "Sendy Andreansah",
+  ],
+  authors: [{ name: "Sendy Andreansah" }],
+  openGraph: {
+    title: "Sendy Andreansah — IT Support & Servis Komputer Tangerang",
+    description:
+      "Servis dan dukungan IT sejak 2013 di Tangerang: perbaikan hardware, instalasi OS, upgrade RAM/SSD, jaringan LAN, dan printer.",
+    type: "profile",
+    locale: "id_ID",
+  },
 };
 
 export default function RootLayout({
@@ -17,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body className={`${inter.variable} ${oswald.variable} font-body`}>
         {children}
       </body>

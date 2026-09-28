@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import Link from "next/dist/client/link";
+import Link from "next/link";
+import { tautanWhatsApp } from "../lib/portfolio";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,10 +19,11 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { name: "Profile", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "Contact", href: "#contact" },
+    { name: "Layanan", href: "#layanan" },
+    { name: "Proyek", href: "#projects" },
+    { name: "Keahlian", href: "#skills" },
+    { name: "Pengalaman", href: "#experience" },
+    { name: "Kontak", href: "#contact" },
   ];
 
   return (
@@ -37,14 +39,11 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-display font-bold text-primary cursor-pointer tracking-wider"
-          >
+          <Link href="/" className="text-2xl font-display font-bold text-primary tracking-wider">
             Sendy<span className="text-tertiary">.</span>
-          </motion.div>
+          </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
@@ -59,15 +58,17 @@ export function Navbar() {
               </motion.a>
             ))}
           </div>
-          <Link href="/login" className="hidden md:block">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary font-bold"
-            >
-              Get in Touch
-            </motion.button>
-          </Link>
+
+          <motion.a
+            href={tautanWhatsApp("Halo Sendy, saya mau tanya soal dukungan/servis komputer.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn-primary font-bold"
+          >
+            WhatsApp
+          </motion.a>
         </div>
       </div>
     </motion.nav>

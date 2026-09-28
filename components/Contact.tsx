@@ -1,67 +1,73 @@
-import React from "react";
-import Link from "next/link";
-import {
-  Mail,
-  MapPin,
-  Globe,
-  ExternalLink,
-  AtSign,
-  MessageSquare,
-  Music,
-} from "lucide-react";
+"use client";
 
-const socialLinks = [
-  {
-    name: "Email",
-    icon: Mail,
-    url: "mailto:sendy.lazada@gmail.com",
-  },
-  {
-    name: "GitHub",
-    icon: Globe,
-    url: "https://github.com/sendygithub",
-  },
-  {
-    name: "LinkedIn",
-    icon: ExternalLink,
-    url: "https://linkedin.com/in/sendy-andreansah",
-  },
-  {
-    name: "Instagram",
-    icon: AtSign,
-    url: "https://instagram.com/sendyandreansah",
-  },
-  {
-    name: "Facebook",
-    icon: MessageSquare,
-    url: "https://facebook.com/sendy.andreansah",
-  },
-  {
-    name: "TikTok",
-    icon: Music,
-    url: "https://tiktok.com/@sendyandreansah",
-  },
-];
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Mail, MapPin, MessageCircle, Globe, ExternalLink } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  EMAIL,
+  LABEL_WHATSAPP,
+  LOKASI,
+  tautanSosial,
+  tautanWhatsApp,
+} from "../lib/portfolio";
+
+const ikonSosial: Record<string, LucideIcon> = {
+  GitHub: Globe,
+  LinkedIn: ExternalLink,
+  Email: Mail,
+};
 
 export const Contact = () => {
-  return (
-    <section id="contact" className="py-32 px-6">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-4 text-primary">
-            Let&apos;s Build Something Great
-          </h2>
-          <p className="text-secondary text-lg max-w-2xl mx-auto font-body">
-            Open for collaborations, freelance opportunities, or just a coffee
-            chat.
-          </p>
-        </div>
+  const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [pesan, setPesan] = useState("");
 
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-8">
+  const kirimLewatEmail = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subjek = `Pesan dari website — ${nama || "tanpa nama"}`;
+    const isi = `Nama: ${nama}\nEmail: ${email}\n\n${pesan}`;
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
+      subjek
+    )}&body=${encodeURIComponent(isi)}`;
+  };
+
+  return (
+    <section id="contact" className="py-24 px-6">
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-14 border-b border-secondary/20 pb-6"
+        >
+          <p className="font-label uppercase tracking-widest text-xs text-tertiary mb-3">
+            06 — Kontak
+          </p>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-3">
+            Bisa dihubungi langsung
+          </h2>
+          <p className="text-primary/70 font-body max-w-2xl">
+            Untuk lowongan kerja, panggilan servis, atau sekadar tanya-tanya
+            soal perangkat. WhatsApp paling cepat dijawab.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Info Side */}
-          <div className="card border border-secondary/10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="card border border-secondary/10"
+          >
             <div className="space-y-6 mb-8">
-              <div className="flex items-center gap-4">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="flex items-center gap-4 group"
+              >
                 <div className="w-12 h-12 bg-tertiary/20 rounded-sm flex items-center justify-center">
                   <Mail className="text-tertiary" size={20} />
                 </div>
@@ -69,95 +75,150 @@ export const Contact = () => {
                   <p className="text-xs font-label uppercase tracking-widest text-secondary">
                     Email
                   </p>
-                  <p className="font-body text-primary">
-                    sendy.lazada@gmail.com
+                  <p className="font-body text-primary group-hover:text-tertiary transition-colors">
+                    {EMAIL}
                   </p>
                 </div>
-              </div>
+              </a>
+
+              <a
+                href={tautanWhatsApp(
+                  "Halo Sendy, saya mau tanya soal dukungan/servis komputer."
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-12 h-12 bg-tertiary/20 rounded-sm flex items-center justify-center">
+                  <MessageCircle className="text-tertiary" size={20} />
+                </div>
+                <div>
+                  <p className="text-xs font-label uppercase tracking-widest text-secondary">
+                    WhatsApp
+                  </p>
+                  <p className="font-body text-primary group-hover:text-tertiary transition-colors">
+                    {LABEL_WHATSAPP}
+                  </p>
+                </div>
+              </a>
+
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-tertiary/20 rounded-sm flex items-center justify-center">
                   <MapPin className="text-tertiary" size={20} />
                 </div>
                 <div>
                   <p className="text-xs font-label uppercase tracking-widest text-secondary">
-                    Location
+                    Lokasi
                   </p>
-                  <p className="font-body text-primary">Banten, Indonesia</p>
+                  <p className="font-body text-primary">{LOKASI}</p>
                 </div>
               </div>
             </div>
 
             <div>
               <p className="text-xs font-label uppercase tracking-widest text-secondary mb-4">
-                Connect With Me
+                Tautan
               </p>
               <div className="flex flex-wrap gap-3">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
+                {tautanSosial.map((sosial) => {
+                  const Icon = ikonSosial[sosial.nama] ?? Mail;
                   return (
-                    <Link
-                      key={social.name}
-                      href={social.url}
+                    <a
+                      key={sosial.nama}
+                      href={sosial.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group flex items-center gap-2 px-4 py-2 bg-surface border border-secondary/20 hover:bg-tertiary hover:border-tertiary rounded-sm transition-all duration-300"
-                      aria-label={social.name}
+                      aria-label={sosial.nama}
                     >
                       <Icon
                         className="text-secondary group-hover:text-on-primary"
                         size={16}
                       />
                       <span className="text-xs font-label uppercase tracking-widest text-secondary group-hover:text-on-primary">
-                        {social.name}
+                        {sosial.nama}
                       </span>
-                    </Link>
+                    </a>
                   );
                 })}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Form Side */}
-          <form
+          {/* Form Side — membuka aplikasi email dengan isi yang sudah terisi */}
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.05 }}
             className="card border border-secondary/10 space-y-6"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={kirimLewatEmail}
           >
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-xs font-label uppercase tracking-widest text-secondary">
-                  Name
+                <label
+                  htmlFor="nama"
+                  className="text-xs font-label uppercase tracking-widest text-secondary"
+                >
+                  Nama
                 </label>
                 <input
+                  id="nama"
                   type="text"
+                  required
+                  value={nama}
+                  onChange={(e) => setNama(e.target.value)}
                   className="w-full bg-surface border border-secondary/20 px-4 py-3 text-primary font-body focus:outline-none focus:border-tertiary transition-colors"
-                  placeholder="John Doe"
+                  placeholder="Nama Anda"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs font-label uppercase tracking-widest text-secondary">
+                <label
+                  htmlFor="email"
+                  className="text-xs font-label uppercase tracking-widest text-secondary"
+                >
                   Email
                 </label>
                 <input
+                  id="email"
                   type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-surface border border-secondary/20 px-4 py-3 text-primary font-body focus:outline-none focus:border-tertiary transition-colors"
-                  placeholder="john@example.com"
+                  placeholder="nama@email.com"
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-xs font-label uppercase tracking-widest text-secondary">
-                Message
+              <label
+                htmlFor="pesan"
+                className="text-xs font-label uppercase tracking-widest text-secondary"
+              >
+                Pesan
               </label>
               <textarea
+                id="pesan"
                 rows={4}
+                required
+                value={pesan}
+                onChange={(e) => setPesan(e.target.value)}
                 className="w-full bg-surface border border-secondary/20 px-4 py-3 text-primary font-body focus:outline-none focus:border-tertiary transition-colors resize-none"
-                placeholder="How can I help you?"
+                placeholder="Ada yang bisa dibantu?"
               />
             </div>
-            <button className="w-full py-4 bg-tertiary text-on-primary font-label uppercase tracking-widest text-xs hover:bg-tertiary/90 transition-all duration-300">
-              Send Message
+            <button
+              type="submit"
+              className="w-full py-4 bg-tertiary text-on-primary font-label uppercase tracking-widest text-xs hover:bg-tertiary/90 transition-all duration-300"
+            >
+              Kirim Pesan
             </button>
-          </form>
+            <p className="text-secondary font-body text-xs leading-relaxed">
+              Tombol ini membuka aplikasi email Anda dengan pesan yang sudah
+              terisi, lalu Anda tinggal menekan kirim. Kalau lebih suka cepat,
+              pakai WhatsApp di sebelah.
+            </p>
+          </motion.form>
         </div>
       </div>
     </section>

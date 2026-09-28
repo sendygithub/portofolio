@@ -1,177 +1,156 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { Globe, ExternalLink, Mail } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  EMAIL,
+  GELAR,
+  LOKASI,
+  NAMA,
+  POSISI_DICARI,
+  tautanSosial,
+} from "../lib/portfolio";
 
-const socialLinks = [
-  { name: "GitHub", icon: "💻", url: "#" },
-  { name: "LinkedIn", icon: "💼", url: "#" },
-  { name: "Twitter", icon: "🐦", url: "#" },
-  { name: "Instagram", icon: "📷", url: "#" },
-  { name: "Email", icon: "✉️", url: "#" },
-];
-
-const quickLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "About", href: "#about" },
-];
-
-const services = [
-  "Web Development",
-  "UI/UX Design",
-  "Mobile Apps",
-  "Consulting",
-];
+const ikonSosial: Record<string, LucideIcon> = {
+  GitHub: Globe,
+  LinkedIn: ExternalLink,
+  Email: Mail,
+};
 
 export function Footer() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const tautanCepat = [
+    { name: "Layanan Servis", href: "/servis" },
+    { name: "Daftar Harga", href: "/harga" },
+    { name: "Proyek", href: "/#projects" },
+    { name: "Keahlian", href: "/#skills" },
+    { name: "Pengalaman", href: "/#experience" },
+    { name: "Kontak", href: "/#contact" },
+  ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+  const keahlianUtama = [
+    "Servis komputer & laptop",
+    "Instalasi Windows & Linux",
+    "Upgrade RAM & SSD",
+    "Perbaikan laptop (LCD, keyboard, engsel)",
+    "Jaringan LAN & printer",
+    "Dukungan pengguna",
+  ];
 
   return (
-    <footer
-      ref={ref}
-      className="relative border-t border-secondary/10 bg-neutral"
-    >
-      {/* Decorative line */}
+    <footer className="relative border-t border-secondary/10 bg-neutral">
       <div className="absolute top-0 left-0 right-0 h-px bg-tertiary/30" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-5"
-        >
-          {/* Brand Section */}
-          <motion.div variants={itemVariants} className="lg:col-span-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
+          {/* Brand */}
+          <div className="lg:col-span-1">
             <h3 className="text-2xl font-display font-bold mb-4 text-primary">
-              Sendy<span className="text-tertiary">.</span>
+              {NAMA}
+              <span className="text-tertiary">.</span>
             </h3>
-            <p className="text-primary/70 mb-6 leading-relaxed font-body">
-              Creating exceptional digital experiences through innovative design
-              and cutting-edge technology.
+            <p className="text-primary/70 mb-6 leading-relaxed font-body text-sm">
+              {GELAR} — IT Support dan servis komputer/laptop sejak 2013 di
+              Tangerang. 13 tahun bekerja sistem shift di lini produksi.
             </p>
             <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-3 text-primary/80 font-body">
+              <div className="flex items-center gap-3 text-primary/80 font-body text-sm">
                 <span className="text-tertiary">◈</span>
-                <span>Banten, Indonesia</span>
+                <span>{LOKASI}</span>
               </div>
-              <div className="flex items-center gap-3 text-primary/80 font-body">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="flex items-center gap-3 text-primary/80 font-body text-sm hover:text-tertiary transition-colors"
+              >
                 <span className="text-tertiary">✉</span>
-                <a
-                  href="mailto:sendy.lazada@gmail.com"
-                  className="hover:text-tertiary transition-colors"
-                >
-                  sendy.lazada@gmail.com
-                </a>
-              </div>
+                {EMAIL}
+              </a>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div variants={itemVariants}>
+          {/* Tautan */}
+          <div>
             <h4 className="text-lg font-display font-bold mb-6 text-primary">
-              Quick Links
+              Halaman
             </h4>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
+              {tautanCepat.map((link) => (
                 <li key={link.name}>
-                  <motion.a
+                  <Link
                     href={link.href}
-                    whileHover={{ x: 5, color: "#C96F2E" }}
-                    className="text-primary/70 hover:text-tertiary transition-colors flex items-center gap-2 font-body"
+                    className="text-primary/70 hover:text-tertiary transition-colors flex items-center gap-2 font-body text-sm"
                   >
                     <span className="text-tertiary">→</span>
                     {link.name}
-                  </motion.a>
+                  </Link>
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Services */}
-          <motion.div variants={itemVariants}>
+          {/* Keahlian */}
+          <div>
             <h4 className="text-lg font-display font-bold mb-6 text-primary">
-              Services
+              Yang dikerjakan
             </h4>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <motion.div
-                    whileHover={{ x: 5, color: "#C96F2E" }}
-                    className="text-primary/70 hover:text-tertiary transition-colors flex items-center gap-2 font-body"
-                  >
-                    <span className="text-tertiary">•</span>
-                    {service}
-                  </motion.div>
+              {keahlianUtama.map((item) => (
+                <li
+                  key={item}
+                  className="text-primary/70 font-body text-sm flex items-start gap-2"
+                >
+                  <span className="text-tertiary">•</span>
+                  {item}
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Social Media */}
-          <motion.div variants={itemVariants}>
+          {/* Sosial */}
+          <div>
             <h4 className="text-lg font-display font-bold mb-6 text-primary">
-              Connect With Me
+              Tautan
             </h4>
             <div className="flex flex-wrap gap-3 mb-6">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.url}
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={
-                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
-                  }
-                  transition={{ delay: 0.2 + index * 0.05 }}
-                  className="w-12 h-12 bg-surface border border-secondary/20 rounded-sm flex items-center justify-center text-xl hover:bg-tertiary hover:border-tertiary transition-all duration-300"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              {tautanSosial.map((sosial) => {
+                const Icon = ikonSosial[sosial.nama] ?? Mail;
+                return (
+                  <motion.a
+                    key={sosial.nama}
+                    href={sosial.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -3 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-12 h-12 bg-surface border border-secondary/20 rounded-sm flex items-center justify-center hover:bg-tertiary hover:border-tertiary transition-all duration-300"
+                    aria-label={sosial.nama}
+                  >
+                    <Icon
+                      className="text-secondary"
+                      size={18}
+                    />
+                  </motion.a>
+                );
+              })}
             </div>
-          </motion.div>
-        </motion.div>
+            <p className="text-secondary font-body text-sm leading-relaxed">
+              Terbuka untuk posisi {POSISI_DICARI}.
+            </p>
+          </div>
+        </div>
 
-        {/* Copyright */}
-        <motion.div variants={itemVariants}>
-          <p className="text-sm text-secondary font-body mt-1">
-            &copy; {new Date().getFullYear()} Sendy Andreansah. All rights
-            reserved.
+        <div className="border-t border-secondary/10 pt-6">
+          <p className="text-sm text-secondary font-body">
+            &copy; {new Date().getFullYear()} {NAMA}. Dibangun dengan Next.js
+            dan Tailwind CSS.
           </p>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Decorative elements */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-tertiary/20" />
     </footer>
   );
 }
+
 export default Footer;

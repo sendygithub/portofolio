@@ -7,14 +7,16 @@ import Projects from "../components/Projects";
 import { Navbar } from "../components/Navbar";
 import { Contact } from "../components/Contact";
 import Experience from "../components/Experience";
+import Layanan from "../components/Layanan";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
       <Hero />
-      <Projects />
+      <Layanan />
       <Skills />
+      <Projects />
       <Experience />
       <Contact />
       <Footer />
